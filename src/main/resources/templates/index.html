@@ -1,39 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+<!--<head>-->
+<!--  &lt;!&ndash; Basic &ndash;&gt;-->
+<!--  <meta charset="utf-8" />-->
+<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+<!--  &lt;!&ndash; Mobile Metas &ndash;&gt;-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />-->
+<!--  &lt;!&ndash; Site Metas &ndash;&gt;-->
+<!--  <meta name="keywords" content="" />-->
+<!--  <meta name="description" content="" />-->
+<!--  <meta name="author" content="" />-->
+<!--  <link rel="shortcut icon" href="images/favicon.png" type="">-->
 
-  <title> Feane </title>
+<!--  <title> Feane </title>-->
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<!--  &lt;!&ndash; bootstrap core css &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />-->
 
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <!-- nice select  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+<!--  &lt;!&ndash;owl slider stylesheet &ndash;&gt;-->
+<!--  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />-->
+<!--  &lt;!&ndash; nice select  &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />-->
+<!--  &lt;!&ndash; font awesome style &ndash;&gt;-->
+<!--  <link href="css/font-awesome.min.css" rel="stylesheet" />-->
 
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+<!--  &lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--  <link href="css/style.css" rel="stylesheet" />-->
+<!--  &lt;!&ndash; responsive style &ndash;&gt;-->
+<!--  <link href="css/responsive.css" rel="stylesheet" />-->
 
-</head>
+<!--</head>-->
+<head></head>
 
 <body>
-
+<div th:replace="fragments/header :: headerFragment"></div>
   <div class="hero_area">
     <div class="bg-box">
       <img src="images/hero-bg.jpg" alt="">
@@ -58,7 +59,7 @@
                 <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="menu">Menu</a>
+                <a class="nav-link" href="menu">Product</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about">About</a>
@@ -68,70 +69,16 @@
               </li>
             </ul>
             <div class="user_option">
-              <a href="" class="user_link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
-              <a class="cart_link" href="#">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                  <g>
-                    <g>
-                      <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                   c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                    </g>
-                  </g>
-                  <g>
-                    <g>
-                      <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                   C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                   c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                   C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                    </g>
-                  </g>
-                  <g>
-                    <g>
-                      <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                   c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                    </g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
-                  <g>
-                  </g>
+              <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-circle nav_btn" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
               </a>
-              <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-              <a href="" class="order_online">
-                Order Online
+              <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart4 nav_btn" viewBox="0 0 16 16">
+                  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -149,7 +96,7 @@
                 <div class="col-md-7 col-lg-6 ">
                   <div class="detail-box">
                     <h1>
-                      Fast Food Restaurant
+                      Best / Event 띄울거임
                     </h1>
                     <p>
                       Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
@@ -221,86 +168,87 @@
   </div>
 
   <!-- footer section -->
-  <footer class="footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 footer-col">
-          <div class="footer_contact">
-            <h4>
-              Contact Us
-            </h4>
-            <div class="contact_link_box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Location
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call +01 1234567890
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  demo@gmail.com
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 footer-col">
-          <div class="footer_detail">
-            <a href="" class="footer-logo">
-              Feane
-            </a>
-            <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-            </p>
-            <div class="footer_social">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-pinterest" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 footer-col">
-          <h4>
-            Opening Hours
-          </h4>
-          <p>
-            Everyday
-          </p>
-          <p>
-            10.00 Am -10.00 Pm
-          </p>
-        </div>
-      </div>
-      <div class="footer-info">
-        <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br><br>
-          &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-  <!-- footer section -->
+<!--  <footer class="footer_section">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4 footer-col">-->
+<!--          <div class="footer_contact">-->
+<!--            <h4>-->
+<!--              Contact Us-->
+<!--            </h4>-->
+<!--            <div class="contact_link_box">-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-map-marker" aria-hidden="true"></i>-->
+<!--                <span>-->
+<!--                  Location-->
+<!--                </span>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-phone" aria-hidden="true"></i>-->
+<!--                <span>-->
+<!--                  Call +01 1234567890-->
+<!--                </span>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-envelope" aria-hidden="true"></i>-->
+<!--                <span>-->
+<!--                  demo@gmail.com-->
+<!--                </span>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-4 footer-col">-->
+<!--          <div class="footer_detail">-->
+<!--            <a href="" class="footer-logo">-->
+<!--              Feane-->
+<!--            </a>-->
+<!--            <p>-->
+<!--              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with-->
+<!--            </p>-->
+<!--            <div class="footer_social">-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-facebook" aria-hidden="true"></i>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-twitter" aria-hidden="true"></i>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-linkedin" aria-hidden="true"></i>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-instagram" aria-hidden="true"></i>-->
+<!--              </a>-->
+<!--              <a href="">-->
+<!--                <i class="fa fa-pinterest" aria-hidden="true"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-4 footer-col">-->
+<!--          <h4>-->
+<!--            Opening Hours-->
+<!--          </h4>-->
+<!--          <p>-->
+<!--            Everyday-->
+<!--          </p>-->
+<!--          <p>-->
+<!--            10.00 Am -10.00 Pm-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="footer-info">-->
+<!--        <p>-->
+<!--          &copy; <span id="displayYear"></span> All Rights Reserved By-->
+<!--          <a href="https://html.design/">Free Html Templates</a><br><br>-->
+<!--          &copy; <span id="displayYear"></span> Distributed By-->
+<!--          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </footer>-->
+<!--   footer section -->
+<div th:replace="fragments/footer :: footerFragment"></div>
 
   <!-- jQery -->
   <script src="js/jquery-3.4.1.min.js"></script>
@@ -324,5 +272,4 @@
   <!-- End Google Map -->
 
 </body>
-
 </html>

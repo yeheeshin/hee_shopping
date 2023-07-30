@@ -1005,3 +1005,10 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.nav_btn {
+  fill: white;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
