@@ -26,4 +26,9 @@ public class HomeController {
         return "mypage";
     }
 
+    @GetMapping("/i_d")
+    public String i_d(Model model) {
+        return "item_detail";
+    }
+
 }

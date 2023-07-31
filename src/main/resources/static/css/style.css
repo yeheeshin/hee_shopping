@@ -140,6 +140,7 @@ a:focus {
 
 .header_section {
   padding: 15px 0;
+  background-color: black;
 }
 
 .header_section .container-fluid {
@@ -576,12 +577,14 @@ a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  transform: translateX(-5px);
 }
 
 .food_section .box .options a svg {
   width: 18px;
   height: auto;
   fill: #ffffff;
+  transform: translateX(5px);
 }
 
 .food_section .box:hover .img-box img {
