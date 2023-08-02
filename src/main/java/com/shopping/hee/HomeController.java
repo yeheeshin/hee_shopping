@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/menu")
-    public String menu(Model model) {
-        return "menu";
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        return "index";
+    }
+    @GetMapping("/item")
+    public String item(Model model) {
+        return "Item/apple_item";
     }
 
     @GetMapping("/about")
@@ -28,7 +33,12 @@ public class HomeController {
 
     @GetMapping("/i_d")
     public String i_d(Model model) {
-        return "item_detail";
+        return "Item/item_detail";
+    }
+
+    @GetMapping("/cart")
+    public String cart(Model model) {
+        return "cart";
     }
 
 }

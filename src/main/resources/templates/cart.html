@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" href="css/hee.css" />
+
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+
+<div class="cart-page">
+  <div class="cart-page-container"><br>
+    <!--For cart page and thank you page-->
+    <div class="cart-page-table">
+      <table class="cart-table-product">
+        <thead>
+        <tr class="cart-table-header">
+          <th class="cart-table-select"></th>
+          <th class="cart-table-img"></th>
+          <th class="cart-table-desktop cart-table-product-name">상품 정보</th>
+          <th class="cart-table-desktop cart-table-payment">옵션</th>
+          <th class="cart-table-desktop cart-table-size">수량</th>
+          <th class="cart-table-size right-text-mobile">주문 금액</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="cart-table-content">
+          <td><input type="checkbox" name="checkbox1" value="select"></td>
+          <td class="cart-table-image-info"><img src="http://via.placeholder.com/350x150"></td>
+          <td class="bold-text red-text cart-table-desktop"><span class="bold-text">삼성 통돌이</span></td>
+          <td class="cart-table-desktop">라벤더 그레이</td>
+          <td class="cart-table-desktop">
+              <input type="number" id="quantity" name="quantity" min="1" value="1">
+          </td>
+          <td class="cart-table-desktop">602,000 원</td>
+          <td class="cart-delete"><button class="delete-btn">삭제</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cart-block-right">
+
+      <div class="cart-table-bill">
+        <div class="bill-sub">Subtotal: $1.00</div>
+        <div class="bill-total bold-text">Subtotal: $1.00</div>
+      </div>
+      <div class="cart-header-footer">
+        <a href="#" class="cart-header-cta red-bg" target="_blank">Proceed to Checkout</a>
+      </div><br>
+    </div>
+  </div>
+</div>
+
+
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+</body>
+</html>
