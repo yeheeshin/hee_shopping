@@ -11,9 +11,14 @@ public class HomeController {
     public String home(Model model) {
         return "index";
     }
-    @GetMapping("/item")
-    public String item(Model model) {
+    @GetMapping("/a_item")
+    public String a_item(Model model) {
         return "Item/apple_item";
+    }
+
+    @GetMapping("/s_item")
+    public String s_item(Model model) {
+        return "Item/samsung_item";
     }
 
     @GetMapping("/about")
