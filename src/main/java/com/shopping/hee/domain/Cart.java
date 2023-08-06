@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Cart {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long c_id;
+    private Long cart_id;
 
     private int count;
 

@@ -1,9 +1,6 @@
 package com.shopping.hee.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +17,11 @@ public class Item {
     private String i_code;
     private int count;
     private String img;
+
+    @Enumerated(EnumType.STRING)
+    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
