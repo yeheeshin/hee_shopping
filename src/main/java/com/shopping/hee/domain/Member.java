@@ -10,11 +10,14 @@ import lombok.Setter;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long m_seq;
+    private Long m_id;
 
+    private String id;
     private String pwd;
+
     @Column(name = "m_name")
     private String name;
+
     private String phone;
 
     @Embedded

@@ -1,4 +1,4 @@
-package com.shopping.hee;
+package com.shopping.hee.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        return "index";
+        return "main";
     }
     @GetMapping("/a_item")
     public String a_item(Model model) {
@@ -28,12 +28,12 @@ public class HomeController {
 
     @GetMapping("/book")
     public String book(Model model) {
-        return "book";
+        return "ask";
     }
 
     @GetMapping("/my")
     public String my(Model model) {
-        return "mypage";
+        return "my/mypage";
     }
 
     @GetMapping("/i_d")
@@ -43,7 +43,7 @@ public class HomeController {
 
     @GetMapping("/cart")
     public String cart(Model model) {
-        return "cart";
+        return "my/cart";
     }
 
 }
