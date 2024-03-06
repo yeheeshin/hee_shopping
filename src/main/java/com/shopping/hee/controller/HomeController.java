@@ -24,7 +24,7 @@ public class HomeController {
 
     @GetMapping("/book")
     public String book(Model model) {
-        return "ask";
+        return "ask2";
     }
 
     @GetMapping("/my")
