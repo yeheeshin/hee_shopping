@@ -22,9 +22,14 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping("/book")
-    public String book(Model model) {
-        return "ask2";
+    @GetMapping("/ask")
+    public String ask(Model model) {
+        return "ask";
+    }
+
+    @GetMapping("/askCheck")
+    public String askCheck(Model model) {
+        return "askCheck";
     }
 
     @GetMapping("/my")

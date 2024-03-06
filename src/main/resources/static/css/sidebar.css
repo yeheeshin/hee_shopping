@@ -71,3 +71,65 @@ body {
     cursor:pointer;
     text-indent: 30px;
 }
+
+/* 게시판 css */
+/* 링크 색상 (중요하지 않음) */
+a {
+    text-decoration: none;
+    color: #333;
+}
+a:hover {color: #6199ff;}
+
+/* 테이블 색상 (중요하지 않음) */
+table {
+    width: 100%;
+    margin: 40px auto 10px;
+    border-collapse: collapse;
+}
+th {
+    background: #222831;
+    color: #fff;
+}
+td, th {
+    border: 1px solid #dbdbdb;
+    padding: 5px 20px;
+    font-size:16px;
+}
+
+/* 체크박스의 크기 */
+.check {
+    width:15px;
+    height:15px;
+}
+
+/* 컬럼의 너비 */
+.select {width: 3%;}
+.no {width: 9%;}
+.title {/* 나머지가 자동으로 맞춰집니다. */}
+.writer {width: 20%;}
+.date {width: 15%;}
+
+/* 컬럼의 정렬 */
+tr td:nth-child(1){text-align:center;}
+tr td:nth-child(2){text-align:center;}
+tr td:nth-child(3){text-align:left;}
+tr td:nth-child(4){text-align:center;}
+tr td:nth-child(5){text-align:center;}
+
+/* 페이징 버튼 */
+.page-box {
+    width: 80%;
+    margin: 5px auto;
+    height: 30px;
+    text-align: center;
+}
+.page-box a.btn {
+    display:inline-block;
+    padding: 3px 5px;
+    font-size: 10px;
+    border: 1px solid #dbdbdb;
+    color: #333;
+}
+.page-box a.btn.on {
+    background-color: #dbdbdb;
+}
