@@ -42,4 +42,9 @@ public class HomeController {
         return "my/cart";
     }
 
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
 }
