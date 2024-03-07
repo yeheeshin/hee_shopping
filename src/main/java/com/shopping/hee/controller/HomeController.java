@@ -52,4 +52,9 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/itemAdd")
+    public String itemAdd(Model model) {
+        return "ItemAdd";
+    }
+
 }
