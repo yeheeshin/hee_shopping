@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long cSeq;
 
-    private String category_name;
+    private String name;
 
 }

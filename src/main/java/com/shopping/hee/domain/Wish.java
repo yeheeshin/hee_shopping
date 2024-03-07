@@ -4,17 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter @Setter
-public class Cart {
-
+public class Wish {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartSeq;
-
-    private int count;
-    private LocalDate cartDate;
+    private Long wSeq;
 
     @ManyToOne
     @JoinColumn(name = "mSeq")
@@ -23,5 +17,4 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "iSeq")
     private Item item;
-
 }

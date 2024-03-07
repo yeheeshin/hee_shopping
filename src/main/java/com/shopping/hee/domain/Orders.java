@@ -11,30 +11,23 @@ import java.time.LocalDate;
 public class Orders {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long o_id;
+    private Long oSeq;
 
-    private LocalDate o_date;
-    private int count;
+    private LocalDate oDate;
+    private int total;
+    private String pName;
+    private String pImg;
 
-    @Column(name = "m_name")
-    private String name;
-    private int price;
+    @Enumerated(EnumType.STRING)
+    private HowPay howPay;
 
     @Embedded
     private Address address;
-
-    @Embedded
-    private ItemOption option;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "mSeq")
     private Member member;
-
-    @ManyToOne
-    @JoinColumn(name = "i_id")
-    private Item item;
-
 }

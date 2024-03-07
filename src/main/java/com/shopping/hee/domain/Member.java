@@ -10,16 +10,13 @@ import lombok.Setter;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long m_id;
+    private Long mSeq;
 
-    private String id;
+    private String email;
     private String pwd;
-
-    @Column(name = "m_name")
     private String name;
-
     private String phone;
 
-    @Embedded
-    private Address address;
+    @Enumerated(EnumType.STRING)
+    private YesNo deleteStatus;
 }

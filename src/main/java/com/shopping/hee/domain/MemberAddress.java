@@ -4,24 +4,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter @Setter
-public class Cart {
-
+public class MemberAddress {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartSeq;
+    private Long maSeq;
 
-    private int count;
-    private LocalDate cartDate;
+    @Enumerated(EnumType.STRING)
+    private YesNo basic;
+
+    @Embedded
+    private Address address;
 
     @ManyToOne
     @JoinColumn(name = "mSeq")
     private Member member;
-
-    @ManyToOne
-    @JoinColumn(name = "iSeq")
-    private Item item;
-
 }

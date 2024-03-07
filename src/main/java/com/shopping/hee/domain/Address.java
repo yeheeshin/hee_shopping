@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter @Setter
 public class Address {
 
+    private String name;
+    private String phone;
     private String street;
     private String city;
     private String zipCode;
@@ -16,7 +18,9 @@ public class Address {
         // 기본 생성자
     }
 
-    public Address(String street, String city, String zipCode) {
+    public Address(String name, String phone, String street, String city, String zipCode) {
+        this.name = name;
+        this.phone = phone;
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;

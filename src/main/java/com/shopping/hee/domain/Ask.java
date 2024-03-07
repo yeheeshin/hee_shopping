@@ -8,20 +8,16 @@ import java.time.LocalDate;
 
 @Entity
 @Getter @Setter
-public class Cart {
-
+public class Ask {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartSeq;
+    private Long aSeq;
 
-    private int count;
-    private LocalDate cartDate;
+    private String title;
+    private String content;
+    private String img;
+    private LocalDate ADate;
 
     @ManyToOne
     @JoinColumn(name = "mSeq")
     private Member member;
-
-    @ManyToOne
-    @JoinColumn(name = "iSeq")
-    private Item item;
-
 }
