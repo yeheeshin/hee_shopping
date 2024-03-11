@@ -47,11 +47,6 @@ public class HomeController {
         return "my/cart";
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
-
     @GetMapping("/itemAdd")
     public String itemAdd(Model model) {
         return "ItemAdd";

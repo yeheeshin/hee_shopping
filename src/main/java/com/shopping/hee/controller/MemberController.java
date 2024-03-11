@@ -22,13 +22,21 @@ public class MemberController {
     @GetMapping("join")
     public String memberForm(MemberForm memberForm, Model model) {
         model.addAttribute("member", memberForm);
-        return "login";
+        return "member/join";
     }
 
-    @PostMapping("join2")
+    @GetMapping("login")
+    public String memberForm2(MemberForm memberForm, Model model) {
+        model.addAttribute("member", memberForm);
+        return "member/login";
+    }
+
+
+    // 회원가입
+    @PostMapping("join")
     public String memberJoin(@Valid @ModelAttribute("member") MemberForm memberForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "member/join";
         }
         try {
             Member member = Member.createMember(memberForm, passwordEncoder);
@@ -36,7 +44,7 @@ public class MemberController {
             System.out.println("저장이 잘 되는가? " + member);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "login";
+            return "member/join";
         }
         return "redirect:/";
     }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/join.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Document</title>
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Responsive Registration Form</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form action="join" method="post" th:object="${member}">
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input type="email" th:field="*{email}" id="email" name="email" placeholder="Email" required />
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" th:field="*{pwd}" id="pwd" name="pwd" placeholder="Password" required />
+                        <p th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" class="fieldError">Incorrect data</p>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                        <input type="text" th:field="*{name}" id="name" name="name" placeholder="Name" required />
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fas fa-phone"></i></span>
+                        <input type="text" th:field="*{phone}" id="phone" name="phone" placeholder="Phone Number" required />
+                        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
+                    </div>
+                    <input class="button" type="submit" value="회원가입" />
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+
+    $(document).ready(function(){
+        var errorMessage = [[${errorMessage}]];
+        if(errorMessage != null){
+            alert(errorMessage);
+        }
+    });
+</script>
+
+</body>
+</html>
