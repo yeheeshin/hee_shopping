@@ -3,6 +3,11 @@
 <head>
   <link rel="stylesheet" href="css/login.css">
   <title>Document</title>
+  <style>
+    .fieldError {
+      color: #bd2130;
+    }
+  </style>
 </head>
 <body>
 
@@ -37,26 +42,47 @@
         <span class="m--in">로그인</span>
       </div>
     </div>
-    <div class="form sign-up">
-      <h2>회원가입</h2>
-      <label>
-        <span>이름</span>
-        <input type="text" />
-      </label>
-      <label>
-        <span>Email</span>
-        <input type="email" />
-      </label>
-      <label>
-        <span>Password</span>
-        <input type="password" />
-      </label>
-      <button type="button" class="submit">회원가입</button>
-      <button type="button" class="fb-btn">Join with <span>kakao</span></button>
-    </div>
+    <form action="join2" method="post" th:object="${member}">
+      <p th:if="${errorMessage}" th:text="${errorMessage}" class="fieldError"></p>
+      <div class="form sign-up">
+        <h2>회원가입</h2>
+        <label>
+          <label th:for="name">이름</label>
+          <input type="text" id="name" name="name" th:field="*{name}" />
+          <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
+        </label>
+        <label>
+          <span th:for="email">Email</span>
+          <input type="email" id="email" name="email" th:field="*{email}" />
+          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
+        </label>
+        <label>
+          <span th:for="pwd">Password</span>
+          <input type="password" id="pwd" name="pwd" th:field="*{pwd}" />
+          <p th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" class="fieldError">Incorrect data</p>
+        </label>
+        <label>
+          <span th:for="phone">번호</span>
+          <input type="text" id="phone" name="phone" th:field="*{phone}" />
+          <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
+        </label>
+        <button type="submit" class="submit">회원가입</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <!--        <button type="button" class="fb-btn">Join with <span>kakao</span></button>-->
+      </div>
+    </form>
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="js/login.js"></script>
+<script th:inline="javascript">
+
+  $(document).ready(function(){
+    var errorMessage = [[${errorMessage}]];
+    if(errorMessage != null){
+      alert(errorMessage);
+    }
+  });
+</script>
 </body>
 </html>
