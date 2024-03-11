@@ -1,5 +1,7 @@
 package com.shopping.hee.config;
 
+import com.shopping.hee.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,18 +9,32 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration //빈 등록(Ioc관리)
 @EnableWebSecurity
 public class SecurityConfig  {
 
+    @Autowired
+    MemberService memberService;
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.formLogin((formLogin) ->
+                formLogin
+                        .loginPage("/login")
+                        .usernameParameter("email")
+                        .passwordParameter("pwd")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/loginError")
+        )
+                .logout((logoutConfig) ->
+                        logoutConfig
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/")
+                );
         return http.build();
     }
-
 
     /*
      * 비밀번호를 데이터베이스에 그대로 저장했을 경우, 데이터베이스가 해킹당하면 고객의 회원 정보가 그대로 노출 된다.

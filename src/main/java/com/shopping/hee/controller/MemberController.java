@@ -20,16 +20,22 @@ public class MemberController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("join")
-    public String memberForm(MemberForm memberForm, Model model) {
+    public String memberJoin(MemberForm memberForm, Model model) {
         model.addAttribute("member", memberForm);
         return "member/join";
     }
 
     @GetMapping("login")
-    public String memberForm2(MemberForm memberForm, Model model) {
-        model.addAttribute("member", memberForm);
+    public String memberLogin() {
         return "member/login";
     }
+
+    @GetMapping("loginError")
+    public String loginError(Model model) {
+        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
+        return "member/login";
+    }
+
 
 
     // 회원가입
