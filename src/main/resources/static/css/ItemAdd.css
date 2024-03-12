@@ -26,6 +26,10 @@ body {
     border-radius: 5px;
 }
 
+.form-group select {
+    height: 60%;
+}
+
 .form-group input[type="number"]{
     width: 25%;
     padding: 10px;
