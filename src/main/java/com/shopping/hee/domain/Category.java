@@ -1,20 +1,18 @@
 package com.shopping.hee.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+public enum Category {
+    Bracelet("팔찌"),
+    Ring("반지"),
+    Necklace("목걸이"),
+    Earring("귀걸이");
 
-@Entity
-@Getter
-@Setter
-public class Category {
+    private final String name;
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cSeq;
+    Category(String name) {
+        this.name = name;
+    }
 
-    private String name;
-
+    public String getName() {
+        return name;
+    }
 }

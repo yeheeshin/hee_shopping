@@ -17,7 +17,6 @@ body {
     margin-bottom: 5px;
 }
 .form-group input[type="text"],
-.form-group input[type="number"],
 .form-group input[type="date"],
 .form-group textarea,
 .form-group select {
@@ -26,6 +25,28 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+.form-group input[type="number"] {
+    width: 25%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group.mine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-group.mine label {
+    margin-right: 10px;
+}
+
+.form-group.mine input.gap {
+    margin-right: 30px;
+}
+
 .form-group input[type="file"] {
     padding: 5px;
 }

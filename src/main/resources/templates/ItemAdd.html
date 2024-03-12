@@ -13,28 +13,33 @@
     <h1>상품 등록</h1>
   </div>
 <div class="container">
-  <form action="/itemAdd" method="post" enctype="multipart/form-data">
+  <form action="itemAdd" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="itemName">상품명</label>
-      <input type="text" id="itemName" name="itemName" required />
+      <label for="name">상품명</label>
+      <input type="text" id="name" name="name" required />
     </div>
     <div class="form-group">
-      <label for="itemDetail">상품 설명</label>
-      <textarea id="itemDetail" name="itemDetail" required=""></textarea>
+      <label for="detail">상품 설명</label>
+      <textarea id="detail" name="detail" required=""></textarea>
     </div>
     <div class="form-group">
-      <label for="itemCount">상품개수</label>
-      <input type="number" id="itemCount" name="itemCount" required />
+      <label for="color">소재</label>
+      <select id="color" name="color" required></select><br><br>
     </div>
-    <div class="form-group">
-      <label for="itemPrice">상품 가격</label>
-      <input type="number" id="itemPrice" name="itemPrice" required />
-    </div>
-    <div class="form-group">
-      <label for="itemImage">상품 이미지</label>
-      <input type="file" id="itemImage" name="itemImage" accept=".png, .jpg, .jpeg" required />
-    </div>
+    <div class="form-group mine">
+      <label for="price">상품 가격</label>
+      <input class="gap" type="number" id="price" name="price" required />
 
+      <label for="count">재고</label>
+      <input class="gap" type="number" id="count" name="count" required />
+
+      <label for="size">사이즈</label>
+      <input type="number" id="size" name="size" required />cm
+    </div><br>
+    <div class="form-group">
+      <label for="img">상품 이미지</label>
+      <input type="file" id="img" name="img" accept=".png, .jpg, .jpeg" required />
+    </div><br>
     <div class="form-group">
       <input type="submit" value="상품 등록" />
     </div>
