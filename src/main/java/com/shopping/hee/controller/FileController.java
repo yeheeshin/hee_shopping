@@ -17,7 +17,7 @@ public class FileController {
     @PostMapping("img")
     public String img(@ModelAttribute("pic") MultipartFile pic) {
         String imgName = pic.getOriginalFilename();
-
+        System.out.println("imgName = " + imgName);
 
         Path imgPath = Paths.get(MyPath.imgPath + imgName);
 

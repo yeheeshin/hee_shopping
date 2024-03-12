@@ -1,7 +1,7 @@
 package com.shopping.hee.service;
 
 import com.shopping.hee.domain.Member;
-import com.shopping.hee.domain.MemberForm;
+import com.shopping.hee.domain.Form.MemberForm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

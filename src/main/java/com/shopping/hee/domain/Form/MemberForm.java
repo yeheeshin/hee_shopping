@@ -1,4 +1,4 @@
-package com.shopping.hee.domain;
+package com.shopping.hee.domain.Form;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

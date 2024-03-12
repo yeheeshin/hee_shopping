@@ -1,7 +1,7 @@
 package com.shopping.hee.controller;
 
 import com.shopping.hee.domain.Member;
-import com.shopping.hee.domain.MemberForm;
+import com.shopping.hee.domain.Form.MemberForm;
 import com.shopping.hee.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -42,9 +42,11 @@ public class MemberController {
     @PostMapping("join")
     public String memberJoin(@Valid @ModelAttribute("member") MemberForm memberForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            System.out.println("여기서 발생~?");
             return "member/join";
         }
         try {
+            System.out.println("여기니?");
             Member member = Member.createMember(memberForm, passwordEncoder);
             memberService.saveMember(member);
             System.out.println("저장이 잘 되는가? " + member);

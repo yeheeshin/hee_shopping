@@ -1,5 +1,6 @@
 package com.shopping.hee.domain;
 
+import com.shopping.hee.domain.Form.MemberForm;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
