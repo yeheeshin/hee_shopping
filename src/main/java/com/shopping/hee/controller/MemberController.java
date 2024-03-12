@@ -54,6 +54,6 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/join";
         }
-        return "redirect:/";
+        return "member/login";
     }
 }

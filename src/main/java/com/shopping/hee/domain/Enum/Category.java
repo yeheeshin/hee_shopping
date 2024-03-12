@@ -1,4 +1,4 @@
-package com.shopping.hee.domain;
+package com.shopping.hee.domain.Enum;
 
 public enum Category {
     Bracelet("팔찌"),

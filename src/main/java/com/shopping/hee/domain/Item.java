@@ -1,5 +1,8 @@
 package com.shopping.hee.domain;
 
+import com.shopping.hee.domain.Enum.Category;
+import com.shopping.hee.domain.Enum.ItemColor;
+import com.shopping.hee.domain.Enum.YesNo;
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.utils.MyPath;
 import jakarta.persistence.*;

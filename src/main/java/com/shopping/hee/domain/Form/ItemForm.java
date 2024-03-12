@@ -1,7 +1,7 @@
 package com.shopping.hee.domain.Form;
 
-import com.shopping.hee.domain.Category;
-import com.shopping.hee.domain.ItemColor;
+import com.shopping.hee.domain.Enum.Category;
+import com.shopping.hee.domain.Enum.ItemColor;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

@@ -1,5 +1,7 @@
 package com.shopping.hee.domain;
 
+import com.shopping.hee.domain.Enum.Role;
+import com.shopping.hee.domain.Enum.YesNo;
 import com.shopping.hee.domain.Form.MemberForm;
 import jakarta.persistence.*;
 import lombok.*;

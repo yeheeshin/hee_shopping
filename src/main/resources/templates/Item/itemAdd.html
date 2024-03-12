@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" type="text/css" href="css/ItemAdd.css" />
+  <link rel="stylesheet" type="text/css" href="css/itemAdd.css" />
 </head>
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
@@ -28,7 +28,7 @@
         <label for="category">카테고리</label>
         <select id="category" name="category" th:field="*{category}" class="form-control" required>
           <option value="">카테고리 선택</option>
-          <option th:each="category : ${T(com.shopping.hee.domain.Category).values()}"
+          <option th:each="category : ${T(com.shopping.hee.domain.Enum.Category).values()}"
                   th:value="${category}"
                   th:text="${category.name}">
           </option>
@@ -39,7 +39,7 @@
         <label for="color">소재</label>
         <select id="color" name="color" th:field="*{color}" class="form-control" required>
           <option value="">소재 선택</option>
-          <option th:each="itemColor : ${T(com.shopping.hee.domain.ItemColor).values()}"
+          <option th:each="itemColor : ${T(com.shopping.hee.domain.Enum.ItemColor).values()}"
                   th:value="${itemColor}"
                   th:text="${itemColor.name}">
           </option>

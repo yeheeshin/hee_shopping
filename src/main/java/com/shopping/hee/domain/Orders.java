@@ -1,5 +1,7 @@
 package com.shopping.hee.domain;
 
+import com.shopping.hee.domain.Enum.HowPay;
+import com.shopping.hee.domain.Enum.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

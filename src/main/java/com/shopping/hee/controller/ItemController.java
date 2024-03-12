@@ -1,23 +1,14 @@
 package com.shopping.hee.controller;
-import com.shopping.hee.domain.Category;
+
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
-import com.shopping.hee.domain.ItemColor;
 import com.shopping.hee.service.ItemService;
-import com.shopping.hee.utils.MyPath;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -55,7 +46,7 @@ public class ItemController {
     public String itemAddMove(ItemForm item, Model model) {
         model.addAttribute("item", item);
 
-        return "itemAdd";
+        return "Item/itemAdd";
     }
 
     @PostMapping("itemAdd")
@@ -71,10 +62,10 @@ public class ItemController {
 
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "itemAdd";
+            return "Item/itemAdd";
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "itemAdd";
+            return "Item/itemAdd";
         }
 
         return "redirect:/Bitem";

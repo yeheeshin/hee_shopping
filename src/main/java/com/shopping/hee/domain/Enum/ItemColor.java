@@ -1,4 +1,4 @@
-package com.shopping.hee.domain;
+package com.shopping.hee.domain.Enum;
 
 public enum ItemColor {
     Silver("실버"),
