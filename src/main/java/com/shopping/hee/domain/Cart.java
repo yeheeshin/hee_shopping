@@ -11,17 +11,17 @@ import java.time.LocalDate;
 public class Cart {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartSeq;
+    private Long cartseq;
 
     private int count;
     private LocalDate cartDate;
 
     @ManyToOne
-    @JoinColumn(name = "mSeq")
+    @JoinColumn(name = "mseq")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "iSeq")
+    @JoinColumn(name = "iseq")
     private Item item;
 
 }

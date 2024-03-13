@@ -11,17 +11,17 @@ public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long odSeq;
+    private Long odseq;
 
     // 상품 구매 시의 가격
     private int price;
     private int count;
 
     @ManyToOne
-    @JoinColumn(name = "oSeq")
+    @JoinColumn(name = "oseq")
     private Orders order;
 
     @ManyToOne
-    @JoinColumn(name = "iSeq")
+    @JoinColumn(name = "iseq")
     private Item item;
 }

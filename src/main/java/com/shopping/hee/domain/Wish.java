@@ -8,13 +8,13 @@ import lombok.Setter;
 @Getter @Setter
 public class Wish {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wSeq;
+    private Long wseq;
 
     @ManyToOne
-    @JoinColumn(name = "mSeq")
+    @JoinColumn(name = "mseq")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "iSeq")
+    @JoinColumn(name = "iseq")
     private Item item;
 }

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Orders {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long oSeq;
+    private Long oseq;
 
     private LocalDate oDate;
     private int total;
@@ -30,6 +30,6 @@ public class Orders {
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "mSeq")
+    @JoinColumn(name = "mseq")
     private Member member;
 }

@@ -12,4 +12,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     // 카테고리 별 목록 불러오기
     List<Item> findByCategory(Category category);
+
+    // 특정 아이템 가져오기
+    List<Item> findByIseq(Long seq);
 }

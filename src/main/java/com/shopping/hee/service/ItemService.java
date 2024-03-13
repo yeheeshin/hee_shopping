@@ -30,6 +30,11 @@ public class ItemService {
         }
     }
 
+    // 특정 아이템 정보 가져오기
+    public List<Item> getOneItem(Long seq) {
+        return itemRepository.findByIseq(seq);
+    }
+
     // 카테고리 별 목록 불러오기
     public List<Item> getBraceletItems() {
         return itemRepository.findByCategory(Category.Bracelet);

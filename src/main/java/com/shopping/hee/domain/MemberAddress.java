@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 public class MemberAddress {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long maSeq;
+    private Long maseq;
 
     @Enumerated(EnumType.STRING)
     private YesNo basic;
@@ -18,6 +18,6 @@ public class MemberAddress {
     private Address address;
 
     @ManyToOne
-    @JoinColumn(name = "mSeq")
+    @JoinColumn(name = "mseq")
     private Member member;
 }

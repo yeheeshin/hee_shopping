@@ -37,10 +37,6 @@ public class HomeController {
         return "my/mypage";
     }
 
-    @GetMapping("/i_d")
-    public String i_d(Model model) {
-        return "Item/item_detail";
-    }
 
     @GetMapping("/cart")
     public String cart(Model model) {

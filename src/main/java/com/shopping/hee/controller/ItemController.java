@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class ItemController {
         return "Item/itemAdd";
     }
 
+    // 아이템 등록
     @PostMapping("itemAdd")
     public String itemAdd(@ModelAttribute("item") ItemForm item, Model model) {
 
@@ -83,4 +85,12 @@ public class ItemController {
         return "redirect:/Bitem";
     }
 
+    // 아이템 상세 보기
+    @GetMapping("i_d")
+    public String itemDetail(@RequestParam("id") Long seq, Model model) {
+        List<Item> items = itemService.getOneItem(seq);
+        model.addAttribute("items", items);
+
+        return "Item/item_detail";
+    }
 }

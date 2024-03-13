@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter @Setter
 public class Ask {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long aSeq;
+    private Long aseq;
 
     private String title;
     private String content;
@@ -18,6 +18,6 @@ public class Ask {
     private LocalDate ADate;
 
     @ManyToOne
-    @JoinColumn(name = "mSeq")
+    @JoinColumn(name = "mseq")
     private Member member;
 }
