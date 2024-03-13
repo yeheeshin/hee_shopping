@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class ItemController {
@@ -19,25 +21,37 @@ public class ItemController {
     // 팔찌
     @GetMapping("Bitem")
     public String getBItems(Model model) {
-        return "Item/item"; // Thymeleaf 템플릿 이름
+        List<Item> items = itemService.getBraceletItems();
+
+        model.addAttribute("items", items);
+        return "Item/item";
     }
 
     // 반지
     @GetMapping("Ritem")
     public String getRItems(Model model) {
-        return "Item/item"; // Thymeleaf 템플릿 이름
+        List<Item> items = itemService.getRingItems();
+
+        model.addAttribute("items", items);
+        return "Item/item";
     }
 
     // 목걸이
     @GetMapping("Nitem")
     public String getNItems(Model model) {
-        return "Item/item"; // Thymeleaf 템플릿 이름
+        List<Item> items = itemService.getNecklaceItems();
+
+        model.addAttribute("items", items);
+        return "Item/item";
     }
 
     // 귀걸이
     @GetMapping("Eitem")
     public String getEItems(Model model) {
-        return "Item/item"; // Thymeleaf 템플릿 이름
+        List<Item> items = itemService.getEarringItems();
+
+        model.addAttribute("items", items);
+        return "Item/item";
     }
 
 
@@ -51,10 +65,8 @@ public class ItemController {
 
     @PostMapping("itemAdd")
     public String itemAdd(@ModelAttribute("item") ItemForm item, Model model) {
-        System.out.println("여기를 지나는가 확인");
 
         try {
-            System.out.println("여기를 지나는가 확인2");
             Item item1 = Item.createItem(item);
             itemService.saveItem(item1);
 

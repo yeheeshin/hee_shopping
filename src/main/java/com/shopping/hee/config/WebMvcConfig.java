@@ -13,7 +13,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         WebMvcConfigurer.super.addResourceHandlers(registry);
 
         //외부에 있는 폴더를 내 프로젝트에서 찾을 수 있도록 세팅
-        registry.addResourceHandler("/upload/**")
+        registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:///" + MyPath.imgPath)
                 .setCachePeriod(60 * 10 * 6)// 서버 부하를 줄이기 위해 해당요청을 캐시에 저장해놓는 시간을 지정
                 .resourceChain(true)
