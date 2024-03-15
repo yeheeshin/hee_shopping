@@ -43,12 +43,12 @@
               <p th:text="${item.detail}"></p>
               <div class="row">
                 <div class="col-md-6">
-                  <div class="product-option" for="size">Size</div>
-                  <div class="product-result">Size</div>
+                  <div class="product-option">Size</div>
+                  <div class="product-result" th:text="${item.size == 0 ? 'Free' : item.size}">Size</div>
                 </div>
                 <div class="col-md-6">
-                  <div class="product-option" for="size">Color</div>
-                  <div class="product-result">Size</div>
+                  <div class="product-option">Color</div>
+                  <div class="product-result" th:text="${item.color.getName()}">Size</div>
                 </div>
               </div>
               <div class="product-count">

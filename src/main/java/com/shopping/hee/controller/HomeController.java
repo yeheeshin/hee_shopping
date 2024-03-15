@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/about")
     public String about(Model model) {
-        return "about";
+        return "X/about";
     }
 
     @GetMapping("/ask")
@@ -37,10 +37,5 @@ public class HomeController {
         return "my/mypage";
     }
 
-
-    @GetMapping("/cart")
-    public String cart(Model model) {
-        return "my/cart";
-    }
 
 }
