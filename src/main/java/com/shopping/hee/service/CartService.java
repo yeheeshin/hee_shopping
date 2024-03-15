@@ -18,16 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CartService {
     private final CartRepository cartRepository;
     private final MemberRepository memberRepository;
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
-    public Cart addCart(String itemName, int count) {
+    public Cart addCart(Long itemId, int count) {
         // 현재 사용자의 정보
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 사용자 아이디를 가져옴
         String userId = authentication.getName();
 
         Member member = memberRepository.findByEmail(userId);
-        Item item = itemRepository.findByName(itemName);
+        Item item = itemService.findById(itemId);
 
         validateDuplicateCart(member, item);
 

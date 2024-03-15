@@ -87,9 +87,10 @@ public class ItemController {
 
     // 아이템 상세 보기
     @GetMapping("i_d")
-    public String itemDetail(@RequestParam("id") Long seq, Model model) {
+    public String itemDetail(@RequestParam("id") Long seq, @ModelAttribute("errorMessage")String errorMessage ,Model model) {
         List<Item> items = itemService.getOneItem(seq);
         model.addAttribute("items", items);
+        model.addAttribute("errorMessage", errorMessage);
 
         return "Item/item_detail";
     }

@@ -21,6 +21,11 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    // id를 이용해서 item 정보 가져오기
+    public Item findById(Long id) {
+        return itemRepository.findById(id).orElse(null);
+    }
+
     // 동일한 상품명이 있을 경우 예외처리
     private void validateDuplicateItem(Item item) {
         Item findItem = itemRepository.findByName(item.getName());

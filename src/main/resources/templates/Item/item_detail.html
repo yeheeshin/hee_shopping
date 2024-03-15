@@ -22,7 +22,8 @@
     <div class="heading-section">
     </div>
     <div th:each="item : ${items}">
-      <form method="post" th:action="@{cartAdd(itemName=${item.name})}">
+      <form method="post" th:action="@{cartAdd(itemId=${item.iseq})}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="row">
           <div class="col-md-6">
             <div id="slider" class="owl-carousel product-slider">
@@ -58,7 +59,6 @@
                   <div class="qtyplus">+</div>
                 </div>
                 <button class="round-black-btn">Add to Cart</button>
-    <!--            <a th:href="@{/profile(memberId=${community.member.mid})}">-->
               </div>
             </div>
           </div>
@@ -76,14 +76,8 @@
 
 
 <script src="js/item_detail.js"></script>
-<script th:inline="javascript">
-
-  $(document).ready(function(){
-    var errorMessage = [[${errorMessage}]];
-    if(errorMessage != null){
-      alert(errorMessage);
-    }
-  });
+<script th:if="${errorMessage != null and errorMessage ne ''}" th:inline="javascript">
+  alert([[${errorMessage}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
 </script>
 </body>
 </html>
