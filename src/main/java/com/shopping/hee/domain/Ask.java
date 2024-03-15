@@ -3,6 +3,7 @@ package com.shopping.hee.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 
@@ -13,8 +14,11 @@ public class Ask {
     private Long aseq;
 
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String content;
-    private LocalDate ADate;
+
+    @LastModifiedDate
+    private LocalDate adate;
 
     @ManyToOne
     @JoinColumn(name = "mseq")

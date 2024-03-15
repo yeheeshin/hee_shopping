@@ -416,6 +416,7 @@ a:focus {
     transition: all 0.2s;
 }
 .food_section .box .detail-box {
+    height: 145px;
     padding: 25px;
 }
 .food_section .box .detail-box h5 {

@@ -15,7 +15,7 @@ public class Orders {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oseq;
 
-    private LocalDate oDate;
+    private LocalDate odate;
     private int total;
     private String pName;
     private String pImg;

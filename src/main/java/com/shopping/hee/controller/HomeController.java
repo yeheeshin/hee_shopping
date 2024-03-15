@@ -22,11 +22,6 @@ public class HomeController {
         return "X/about";
     }
 
-    @GetMapping("/ask")
-    public String ask(Model model) {
-        return "ask";
-    }
-
     @GetMapping("/askCheck")
     public String askCheck(Model model) {
         return "askCheck";
