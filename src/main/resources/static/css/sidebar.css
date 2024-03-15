@@ -133,3 +133,11 @@ tr td:nth-child(5){text-align:center;}
 .page-box a.btn.on {
     background-color: #dbdbdb;
 }
+
+textarea.ask_content {
+    height: 380px;
+}
+
+.ask_title {
+    height: 50px;
+}

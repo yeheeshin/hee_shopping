@@ -14,7 +14,6 @@ public class Ask {
 
     private String title;
     private String content;
-    private String img;
     private LocalDate ADate;
 
     @ManyToOne
