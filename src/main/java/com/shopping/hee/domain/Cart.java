@@ -14,7 +14,6 @@ public class Cart {
     private Long cartseq;
 
     private int count;
-    private LocalDate cartDate;
 
     @ManyToOne
     @JoinColumn(name = "mseq")

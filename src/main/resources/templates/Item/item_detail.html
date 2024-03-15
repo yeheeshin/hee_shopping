@@ -21,44 +21,49 @@
   <div class="container">
     <div class="heading-section">
     </div>
-    <div class="row" th:each="item : ${items}">
-      <div class="col-md-6">
-        <div id="slider" class="owl-carousel product-slider">
-          <div class="item">
-            <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" />
+    <div th:each="item : ${items}">
+      <form method="post" th:action="@{cartAdd(itemName=${item.name})}">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="slider" class="owl-carousel product-slider">
+              <div class="item">
+                <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="product-dtl">
+              <div class="product-info">
+                <div class="product-name" th:text="${item.name}">Variable Product</div>
+                <div class="product-price-discount" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA') + ' 원'}"><span>$39.00</span>
+    <!--              <span class="line-through">$29.00</span>-->
+                </div>
+              </div>
+              <p th:text="${item.detail}"></p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="product-option" for="size">Size</div>
+                  <div class="product-result">Size</div>
+                </div>
+                <div class="col-md-6">
+                  <div class="product-option" for="size">Color</div>
+                  <div class="product-result">Size</div>
+                </div>
+              </div>
+              <div class="product-count">
+                <div class="product-option">Quantity</div>
+                <div class="display-flex">
+                  <div class="qtyminus">-</div>
+                  <input type="text" name="quantity" value="1" class="qty">
+                  <div class="qtyplus">+</div>
+                </div>
+                <button class="round-black-btn">Add to Cart</button>
+    <!--            <a th:href="@{/profile(memberId=${community.member.mid})}">-->
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="product-dtl">
-          <div class="product-info">
-            <div class="product-name" th:text="${item.name}">Variable Product</div>
-            <div class="product-price-discount" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA') + ' 원'}"><span>$39.00</span>
-<!--              <span class="line-through">$29.00</span>-->
-            </div>
-          </div>
-          <p th:text="${item.detail}"></p>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="product-option" for="size">Size</div>
-              <div class="product-result">Size</div>
-            </div>
-            <div class="col-md-6">
-              <div class="product-option" for="size">Color</div>
-              <div class="product-result">Size</div>
-            </div>
-          </div>
-          <div class="product-count">
-            <div class="product-option">Quantity</div>
-            <form action="#" class="display-flex">
-              <div class="qtyminus">-</div>
-              <input type="text" name="quantity" value="1" class="qty">
-              <div class="qtyplus">+</div>
-            </form>
-            <a href="#" class="round-black-btn">Add to Cart</a>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
