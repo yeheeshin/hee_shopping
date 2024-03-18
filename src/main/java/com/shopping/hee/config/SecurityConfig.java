@@ -1,9 +1,12 @@
 package com.shopping.hee.config;
 
+import com.shopping.hee.domain.Enum.Role;
 import com.shopping.hee.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,13 +23,23 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin((formLogin) ->
-                formLogin
-                        .loginPage("/login")
-                        .usernameParameter("email")
-                        .passwordParameter("pwd")
-                        .defaultSuccessUrl("/")
-                        .failureUrl("/loginError")
+
+        http
+                .authorizeHttpRequests((authorizeRequest) ->
+                        authorizeRequest
+                                .requestMatchers("/", "/home", "/login/**").permitAll()
+                                .requestMatchers("/shopping/**").hasRole(Role.USER.name())
+                                .requestMatchers("/shopping/**","/admin/**").hasRole(Role.ADMIN.name())
+                                .requestMatchers("/css/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin((formLogin) ->
+                        formLogin
+                            .loginPage("/login")
+                            .usernameParameter("email")
+                            .passwordParameter("pwd")
+                            .defaultSuccessUrl("/")
+                            .failureUrl("/loginError")
         )
                 .logout((logoutConfig) ->
                         logoutConfig

@@ -21,7 +21,7 @@ public class CartController {
     }
 
     // 장바구니 추가
-    @PostMapping("cartAdd")
+    @PostMapping("/cartAdd")
     public String cartAdd(@RequestParam("itemId") Long itemId, @RequestParam("quantity") int count, RedirectAttributes redirectAttributes) {
         try {
             cartService.addCart(itemId, count);

@@ -9,12 +9,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String main_home(Model model) {
-        return "main";
+        return "/main";
     }
 
     @GetMapping("/home")
     public String home(Model model) {
-        return "main";
+        return "/main";
     }
 
     @GetMapping("/about")
@@ -24,7 +24,7 @@ public class HomeController {
 
     @GetMapping("/askCheck")
     public String askCheck(Model model) {
-        return "askCheck";
+        return "/askCheck";
     }
 
 

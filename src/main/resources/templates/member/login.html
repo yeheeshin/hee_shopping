@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="col_half last">
-        <form action="login" method="post">
+        <form action="/login" method="post">
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
           <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
           <div class="input_field"><span><i class="fa fa-envelope" aria-hidden="true"></i></span>

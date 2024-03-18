@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,36 +20,43 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("join")
+    @GetMapping("/join")
     public String memberJoin(MemberForm memberForm, Model model) {
         model.addAttribute("member", memberForm);
         return "member/join";
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String memberLogin() {
         return "member/login";
     }
 
     // 로그인 에러
-    @GetMapping("loginError")
+    @GetMapping("/loginError")
     public String loginError(Model model) {
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
         return "member/login";
     }
 
+    // 로그인 , 인가 처리
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+
+
+        return "redirect:/home";
+    }
+
+
     // 회원가입
-    @PostMapping("join")
+    @PostMapping("/join")
     public String memberJoin(@Valid @ModelAttribute("member") MemberForm memberForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("여기서 발생~?");
             return "member/join";
         }
         try {
             System.out.println("여기니?");
             Member member = Member.createMember(memberForm, passwordEncoder);
             memberService.saveMember(member);
-            System.out.println("저장이 잘 되는가? " + member);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/join";

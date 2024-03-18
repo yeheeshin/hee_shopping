@@ -22,7 +22,7 @@ public class AskController {
     }
 
     // 문의 등록
-    @PostMapping("ask")
+    @PostMapping("/ask")
     public String AskAdd(@ModelAttribute("ask") Ask ask) {
         askService.saveAsk(ask);
 

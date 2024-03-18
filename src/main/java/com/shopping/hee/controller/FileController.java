@@ -30,12 +30,12 @@ public class FileController {
         return "fileResult";
     }
 
-    @GetMapping("file")
+    @GetMapping("/file")
     public String fileEx(Model model) {
         return "file";
     }
 
-    @GetMapping("result")
+    @GetMapping("/result")
     public String fileResult(Model model) {
         return "fileResult";
     }
