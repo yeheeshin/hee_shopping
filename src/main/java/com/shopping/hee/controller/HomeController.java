@@ -32,5 +32,10 @@ public class HomeController {
         return "my/mypage";
     }
 
+    @GetMapping("/o_d")
+    public String orderDetail(Model model) {
+        return "orderDetail";
+    }
+
 
 }
