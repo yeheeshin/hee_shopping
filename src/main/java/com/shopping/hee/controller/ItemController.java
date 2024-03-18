@@ -6,21 +6,19 @@ import com.shopping.hee.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/shopping")
 public class ItemController {
 
     private final ItemService itemService;
 
     // 팔찌
-    @GetMapping("Bitem")
+    @GetMapping("/Bitem")
     public String getBItems(Model model) {
         List<Item> items = itemService.getBraceletItems();
 
@@ -29,7 +27,7 @@ public class ItemController {
     }
 
     // 반지
-    @GetMapping("Ritem")
+    @GetMapping("/Ritem")
     public String getRItems(Model model) {
         List<Item> items = itemService.getRingItems();
 
@@ -38,7 +36,7 @@ public class ItemController {
     }
 
     // 목걸이
-    @GetMapping("Nitem")
+    @GetMapping("/Nitem")
     public String getNItems(Model model) {
         List<Item> items = itemService.getNecklaceItems();
 
@@ -47,7 +45,7 @@ public class ItemController {
     }
 
     // 귀걸이
-    @GetMapping("Eitem")
+    @GetMapping("/Eitem")
     public String getEItems(Model model) {
         List<Item> items = itemService.getEarringItems();
 
@@ -57,7 +55,7 @@ public class ItemController {
 
 
     // 아이템 등록 페이지 이동
-    @GetMapping("itemAdd")
+    @GetMapping("/itemAdd")
     public String itemAddMove(ItemForm item, Model model) {
         model.addAttribute("item", item);
 
@@ -65,7 +63,7 @@ public class ItemController {
     }
 
     // 아이템 등록
-    @PostMapping("itemAdd")
+    @PostMapping("/itemAdd")
     public String itemAdd(@ModelAttribute("item") ItemForm item, Model model) {
 
         try {
@@ -86,7 +84,7 @@ public class ItemController {
     }
 
     // 아이템 상세 보기
-    @GetMapping("i_d")
+    @GetMapping("/i_d")
     public String itemDetail(@RequestParam("id") Long seq, @ModelAttribute("errorMessage")String errorMessage ,Model model) {
         List<Item> items = itemService.getOneItem(seq);
         model.addAttribute("items", items);

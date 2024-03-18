@@ -3,6 +3,8 @@ package com.shopping.hee.service;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,7 +33,6 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Member member = memberRepository.findByEmail(email);
@@ -46,4 +47,15 @@ public class MemberService implements UserDetailsService {
                 .roles(member.getRole().toString())
                 .build();
     }
+
+    // 현재 로그인 한 사람 확인
+    public Member nowMember(){
+        // 현재 사용자의 정보
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 사용자 아이디를 가져옴
+        String userId = authentication.getName();
+
+        return memberRepository.findByEmail(userId);
+    }
+
 }

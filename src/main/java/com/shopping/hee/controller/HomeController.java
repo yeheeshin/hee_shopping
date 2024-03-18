@@ -27,10 +27,6 @@ public class HomeController {
         return "askCheck";
     }
 
-    @GetMapping("/my")
-    public String my(Model model) {
-        return "my/mypage";
-    }
 
     @GetMapping("/o_d")
     public String orderDetail(Model model) {

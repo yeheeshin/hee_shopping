@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <link rel="stylesheet" type="text/css" href="css/hee.css" />
+  <link rel="stylesheet" type="text/css" href="/css/hee.css" />
 
 </head>
 <body>
@@ -11,57 +11,56 @@
 <div class="wrap">
   <div class="greenContainer">
     <div>
-      <div class="grade">GOLD</div>
-      <div class="name">Jaden</div>
+<!--      <div class="grade">GOLD</div>-->
+      <div class="name" th:text="${nowMember.name}">이름</div>
     </div>
     <div class="modify">
-      <a href="#">정보 수정</a><br>
-      <a href="#" class="logout-btn">로그아웃</a>
+      <a href="logout" class="logout-btn">로그아웃</a>
     </div>
   </div>
-  <div class="summaryContainer">
-    <div class="item">
-      <div class="number">354</div>
-      <div>뭐할지 미정</div>
-    </div>
-    <div class="item">
-      <div class="number">354</div>
-      <div>적립금(BLCT)</div>
-    </div>
-  </div>
+<!--  <div class="summaryContainer">-->
+<!--    <div class="item">-->
+<!--      <div class="number">354</div>-->
+<!--      <div>뭐할지 미정</div>-->
+<!--    </div>-->
+<!--    <div class="item">-->
+<!--      <div class="number">354</div>-->
+<!--      <div>적립금(BLCT)</div>-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="shippingStatusContainer">
     <div class="title">
       주문/배송조회
     </div>
     <div class="status">
 
-      <div class="item">
+      <a href="#" class="item">
         <div>
           <div class="green number">6</div>
           <div class="text">장바구니</div>
         </div>
         <div class="icon"> > </div>
-      </div>
-      <div class="item">
+      </a>
+      <a href="#" class="item">
         <div>
           <div class="number">0</div>
           <div class="text">결제완료</div>
         </div>
         <div class="icon"> > </div>
-      </div>
-      <div class="item">
+      </a>
+      <a href="#" class="item">
         <div>
           <div class="green number">1</div>
           <div class="text">배송중</div>
         </div>
         <div class="icon"> > </div>
-      </div>
-      <div class="item">
+      </a>
+      <a href="#" class="item">
         <div>
           <div class="green number">3</div>
           <div class="text">배송완료</div>
         </div>
-      </div>
+      </a>
 
     </div>
 
@@ -74,38 +73,33 @@
     </a>
     <a href="#" class="item">
       <div class="icon">ii</div>
-      <div class="text">상품후기</div>
+      <div class="text">문의내역</div>
       <div class="right"> > </div>
     </a>
     <a href="#" class="item">
       <div class="icon">ii</div>
-      <div class="text">상품문의</div>
-      <div class="right"> > </div>
-    </a>
-    <a href="cart" class="item">
-      <div class="icon">ii</div>
-      <div class="text">찜한상품</div>
+      <div class="text">배송지 관리</div>
       <div class="right"> > </div>
     </a>
   </div>
   <div class="listContainer">
-    <a href="#" class="item">
-      <div class="icon">ii</div>
-      <div class="text">
-        <span>내지갑</span>
-        <span class="smallLight">
-            <span>|</span>
-            <span>보유 적립금</span>
-          </span>
-      </div>
-      <div class="right">
-        <span class="blct">175 BLCT</span>
-        > </div>
-    </a>
+<!--    <a href="#" class="item">-->
+<!--      <div class="icon">ii</div>-->
+<!--      <div class="text">-->
+<!--        <span>내지갑</span>-->
+<!--        <span class="smallLight">-->
+<!--            <span>|</span>-->
+<!--            <span>보유 적립금</span>-->
+<!--          </span>-->
+<!--      </div>-->
+<!--      <div class="right">-->
+<!--        <span class="blct">175 BLCT</span>-->
+<!--        > </div>-->
+<!--    </a>-->
 
     <a href="#" class="item">
       <div class="icon">ii</div>
-      <div class="text">설정</div>
+      <div class="text">정보 수정</div>
       <div class="right"> > </div>
     </a>
   </div>

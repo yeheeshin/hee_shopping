@@ -30,13 +30,12 @@ public class MemberController {
         return "member/login";
     }
 
+    // 로그인 에러
     @GetMapping("loginError")
     public String loginError(Model model) {
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
         return "member/login";
     }
-
-
 
     // 회원가입
     @PostMapping("join")
@@ -55,5 +54,14 @@ public class MemberController {
             return "member/join";
         }
         return "member/login";
+    }
+
+    // 마이페이지 이동
+    @GetMapping("/my")
+    public String my(Model model) {
+        Member nowMember = memberService.nowMember();
+        model.addAttribute("nowMember", nowMember);
+
+        return "my/mypage";
     }
 }
