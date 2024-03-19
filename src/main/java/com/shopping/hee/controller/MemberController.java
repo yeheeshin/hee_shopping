@@ -36,15 +36,6 @@ public class MemberController {
         return "member/login";
     }
 
-    // 로그인 , 인가 처리
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-
-
-        return "redirect:/home";
-    }
-
-
     // 회원가입
     @PostMapping("/join")
     public String memberJoin(@Valid @ModelAttribute("member") MemberForm memberForm, BindingResult bindingResult, Model model) {

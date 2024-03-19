@@ -19,7 +19,7 @@
         </div>
         <div class="row clearfix">
             <div class="">
-                <form action="join" method="post" th:object="${member}">
+                <form action="/member/join" method="post" th:object="${member}">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                         <input type="email" th:field="*{email}" id="email" name="email" placeholder="Email" required />
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>

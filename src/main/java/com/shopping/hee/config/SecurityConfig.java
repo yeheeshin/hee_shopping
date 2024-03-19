@@ -28,15 +28,15 @@ public class SecurityConfig  {
         http
                 .authorizeHttpRequests((authorizeRequest) ->
                         authorizeRequest
-                                .requestMatchers("/", "/home", "/member/**").permitAll()
-                                .requestMatchers("/shopping/**").hasRole(Role.USER.name())
-                                .requestMatchers("/shopping/**","/admin/**").hasRole(Role.ADMIN.name())
+                                .requestMatchers("/", "/home", "/member/**", "/shopping/**").permitAll()
+//                                .requestMatchers("/shopping/**").hasRole(Role.USER.name())
+                                .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                                 .requestMatchers("/css/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin((formLogin) ->
                         formLogin
-                            .loginPage("/login")
+                            .loginPage("/member/login")
                             .usernameParameter("email")
                             .passwordParameter("pwd")
                             .defaultSuccessUrl("/home", true)
