@@ -32,5 +32,8 @@ public class AskController {
     }
 
     // 문의 내역 확인
-
+    @GetMapping("/askCheck")
+    public String askCheck(Model model) {
+        return "/askCheck";
+    }
 }

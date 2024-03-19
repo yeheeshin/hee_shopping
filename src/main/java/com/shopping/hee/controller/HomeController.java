@@ -22,16 +22,15 @@ public class HomeController {
         return "X/about";
     }
 
-    @GetMapping("/askCheck")
-    public String askCheck(Model model) {
-        return "/askCheck";
-    }
-
 
     @GetMapping("/o_d")
     public String orderDetail(Model model) {
         return "orderDetail";
     }
 
+    @GetMapping("/home/myadd")
+    public String myAdd(Model model) {
+        return "my/myAddress";
+    }
 
 }
