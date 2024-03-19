@@ -28,7 +28,7 @@ public class SecurityConfig  {
         http
                 .authorizeHttpRequests((authorizeRequest) ->
                         authorizeRequest
-                                .requestMatchers("/", "/home", "/login/**").permitAll()
+                                .requestMatchers("/", "/home", "/member/**").permitAll()
                                 .requestMatchers("/shopping/**").hasRole(Role.USER.name())
                                 .requestMatchers("/shopping/**","/admin/**").hasRole(Role.ADMIN.name())
                                 .requestMatchers("/css/**").permitAll()
