@@ -1,9 +1,12 @@
 package com.shopping.hee.service;
 
+import com.shopping.hee.domain.Enum.Role;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -38,7 +44,15 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findByEmail(email);
 
         if (member == null) {
-            throw new UsernameNotFoundException(email);
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+        }
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        if("ADMIN".equals(member.getRole())){
+            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.name()));
+        } else {
+            authorities.add(new SimpleGrantedAuthority(Role.USER.name()));
+            System.out.println("여기를 지나갑니까?");
         }
 
         return User.builder()
