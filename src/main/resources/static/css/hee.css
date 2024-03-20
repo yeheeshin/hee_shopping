@@ -411,7 +411,7 @@ div {
 .cart-page table.cart-table-product th,
 .cart-page table.cart-table-product td {
     padding: 15px;
-    text-align: left;
+    text-align: center;
 }
 .cart-page table.cart-table-product th.cart-table-size {
     max-width: 160px;

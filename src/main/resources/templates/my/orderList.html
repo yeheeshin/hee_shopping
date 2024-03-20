@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/hee.css" />
+
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+
+<div class="cart-page">
+  <div class="cart-page-container"><br>
+    <!--For cart page and thank you page-->
+    <div class="cart-page-table">
+      <br><h2> 주문 목록</h2><br>
+<!--      주문번호, 이미지, 아이템 이름, 가격, 수량, 주문상태-->
+      <table class="cart-table-product">
+        <thead>
+        <tr class="cart-table-header">
+          <th class="cart-table-img"></th>
+          <th class="cart-table-desktop cart-table-product-name">상품 정보</th>
+          <th class="cart-table-desktop cart-table-size">수량</th>
+          <th class="cart-table-size right-text-mobile">주문 금액</th>
+          <th class="cart-table-num">주문날짜</th>
+          <th>주문상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="cart-table-content">
+          <td class="cart-table-image-info"><img src="http://via.placeholder.com/350x150"></td>
+          <td class="bold-text red-text cart-table-desktop"><span class="bold-text">삼성 통돌이</span></td>
+          <td class="cart-table-desktop">1</td>
+          <td class="cart-table-desktop">198,000</td>
+          <td class="cart-table-desktop">2024-03-20</td>
+          <td class="cart-delete">배송완료</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+</body>
+</html>

@@ -28,9 +28,4 @@ public class HomeController {
         return "orderDetail";
     }
 
-    @GetMapping("/home/myadd")
-    public String myAdd(Model model) {
-        return "my/myAddress";
-    }
-
 }

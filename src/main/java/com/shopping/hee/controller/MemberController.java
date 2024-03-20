@@ -61,4 +61,16 @@ public class MemberController {
 
         return "my/mypage";
     }
+
+    // 배송지 관리 페이지 이동
+    @GetMapping("/myadd")
+    public String myAdd(Model model) {
+        return "my/myAddress";
+    }
+
+    // 배송지 관리 페이지 이동
+    @GetMapping("/o_l")
+    public String orderList(Model model) {
+        return "my/orderList";
+    }
 }
