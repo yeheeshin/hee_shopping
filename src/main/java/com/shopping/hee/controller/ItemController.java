@@ -2,7 +2,9 @@ package com.shopping.hee.controller;
 
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
+import com.shopping.hee.domain.Member;
 import com.shopping.hee.service.ItemService;
+import com.shopping.hee.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final MemberService memberService;
 
     // 팔찌
     @GetMapping("/Bitem")
@@ -85,11 +88,30 @@ public class ItemController {
 
     // 아이템 상세 보기
     @GetMapping("/i_d")
-    public String itemDetail(@RequestParam("id") Long seq, @ModelAttribute("errorMessage")String errorMessage ,Model model) {
+    public String itemDetail(@RequestParam("id") Long seq, @ModelAttribute("errorMessage") String errorMessage, Model model) {
         List<Item> items = itemService.getOneItem(seq);
         model.addAttribute("items", items);
         model.addAttribute("errorMessage", errorMessage);
 
         return "Item/item_detail";
     }
+
+    @GetMapping("/o_d")
+    public String orderDetail(Model model) {
+        return "itemBuy";
+    }
+
+    @PostMapping("/buy")
+    public String itemBuy(@RequestParam("itemId") Long seq, @RequestParam("quantity") int count,Model model) {
+        List<Item> items = itemService.getOneItem(seq);
+
+        Member member = memberService.nowMember();
+
+        model.addAttribute("items", items);
+        model.addAttribute("count", count);
+        model.addAttribute("member", member);
+
+        return "itemBuy";
+    }
+
 }

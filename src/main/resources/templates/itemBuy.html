@@ -18,28 +18,29 @@
 </div>
 
 <!-- 주문상품 정보 시작 -->
-<div class="container max-w-screen-lg mx-auto">
+<div class="container max-w-screen-lg mx-auto" th:each="item : ${items}">
     <div class="relative overflow-visible">
         <h2 class="mt-10 border-b-2 border-black text-xl">주문상품 정보</h2>
         <div class="box-border">
             <div class="w-full table">
                 <dl class="w-full table-row">
-                    <dt class="px-5 py-4">
-                        <span class="overflow-hidden block w-20 overflow-ellipsis">상품명</span>
-                    </dt>
+
                     <dt class="pb-4 table-cell text-center"></dt>
-                    <dt class="pb-4">주문 금액</dt>
+                    <dt class="pb-4 table-cell text-center">상품명</dt>
+                    <dt class="pb-4 table-cell text-center">수량</dt>
+                    <dt class="pb-4 table-cell text-center">주문 금액</dt>
                 </dl>
                 <dl class="table-row overflow-visible">
-                    <dd class="table-cell w-1/7 p-3 border-t border-b">
-                        <img src="https://image.brandi.me/cproduct/2022/07/12/SB000000000063255483_1657613228_image1_S.jpeg" alt="" class="product_img">
+                    <dd class="table-cell p-3 border-t border-b myTitle">
+                        <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" class="product_img" />
                     </dd>
-                    <dd class="table-cell p-3 align-middle border-t border-b">
-                        <span class="block">[2PACK] 앨빈클로 BEST 그래픽 오버핏 반팔티 5종 택2 패키지</span>
-                        <span class="block">01 AST3767_화이트/M/01 AST3767_화이트/M</span>
-                        <span>1개</span>
+                    <dd class="table-cell p-3 align-middle border-t border-b myTitle">
+                        <span class="block" th:text="${item.name}"></span>
                     </dd>
-                    <dd class="table-cell p-3 align-middle border-t border-b">39,500원</dd>
+                    <dd class="table-cell p-3 align-middle border-t border-b myTitle">
+                        <input type="number" th:value="${count}">개
+                    </dd>
+                    <dd th:text="${#numbers.formatInteger(item.price, 0, 'COMMA') + ' 원'}" class="table-cell p-3 align-middle border-t border-b myTitle">원</dd>
                 </dl>
             </div>
 
@@ -57,29 +58,32 @@
             <dl class="table-row">
                 <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">이름</dt>
                 <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300">
-                    <input type="text" class="w-full border-2 mx-1 px-4 py-3 box-border">
+                    <input type="text" class="w-full border-2 mx-1 px-4 py-3 box-border" th:value="${member.name}">
                 </dd>
             </dl>
             <dl class="table-row">
                 <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">휴대폰</dt>
                 <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300">
-                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '3'> -
-                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '4'> -
-                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '4'>
+                    <input type="text" class="w-full border-2 mx-1 px-4 py-3 box-border" th:value="${member.phone}">
+<!--                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '3'> - -->
+<!--                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '4'> - -->
+<!--                    <input type="text" class="w-1/4 border-2 mx-1 px-4 py-3 box-border" maxlength = '4'>-->
                 </dd>
             </dl>
             <dl class="table-row">
                 <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">이메일</dt>
-                <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300">
-                    <input type="text" class="w-1/3 border-2 mx-1 px-4 py-3 box-border"> @
-                    <select name="email" class="w-1/3 border-2 mx-1 px-4 py-3 box-border">
-                        <option value="naver">naver.com</option>
-                        <option value="naver">daum.net</option>
-                        <option value="naver">hotmail.com</option>
-                        <option value="naver">nate.com</option>
-                        <option value="naver">gmail.com</option>
-                    </select>
-                </dd>
+                    <input type="email" class="w-full border-2 mx-1 px-4 py-3 box-border" th:value="${member.email}">
+
+                <!--                <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300">-->
+<!--                    <input type="text" class="w-1/3 border-2 mx-1 px-4 py-3 box-border"> @-->
+<!--                    <select name="email" class="w-1/3 border-2 mx-1 px-4 py-3 box-border">-->
+<!--                        <option value="naver">naver.com</option>-->
+<!--                        <option value="naver">daum.net</option>-->
+<!--                        <option value="naver">hotmail.com</option>-->
+<!--                        <option value="naver">nate.com</option>-->
+<!--                        <option value="naver">gmail.com</option>-->
+<!--                    </select>-->
+<!--                </dd>-->
             </dl>
         </div>
     </div>
