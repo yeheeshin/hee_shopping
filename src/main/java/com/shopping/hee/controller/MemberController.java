@@ -73,4 +73,10 @@ public class MemberController {
     public String orderList(Model model) {
         return "my/orderList";
     }
+
+    // 배송지 관리 페이지 이동
+    @GetMapping("/memEdit")
+    public String memberEdit(Model model) {
+        return "my/memberEdit";
+    }
 }

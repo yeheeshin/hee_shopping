@@ -26,6 +26,13 @@ body {
     border-radius: 5px;
 }
 
+.form-group input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 .form-group select {
     height: 60%;
 }
@@ -64,4 +71,14 @@ body {
 }
 .form-group input[type="submit"]:hover {
     background: #43927e;
+}
+
+.form-group.delete_mem {
+    padding: 10px 20px;
+    text-align: right;
+}
+
+.form-group.delete_mem a{
+    color: red;
+    text-decoration: underline;
 }
