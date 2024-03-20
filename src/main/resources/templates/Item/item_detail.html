@@ -22,8 +22,8 @@
     <div class="heading-section">
     </div>
     <div th:each="item : ${items}">
-      <form method="post" th:action="@{cartAdd(itemId=${item.iseq})}">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <form method="post" th:action="@{/shopping/buy(itemId=${item.iseq})}">
+<!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
         <div class="row">
           <div class="col-md-6">
             <div id="slider" class="owl-carousel product-slider">
@@ -52,14 +52,16 @@
                 </div>
               </div>
               <div class="product-count">
+                <input type="hidden" th:value="${item.iseq}">
                 <div class="product-option">Quantity</div>
                 <div class="display-flex">
                   <div class="qtyminus">-</div>
                   <input type="text" name="quantity" value="1" class="qty">
                   <div class="qtyplus">+</div>
                 </div>
-                <button class="round-black-btn">Add to Cart</button>
               </div>
+              <button type="submit" class="round-black-btn">구매하기</button>
+              <a th:href="@{/shopping/cartAdd(itemId=${item.iseq}, quantity=1)}" class="round-black-btn">장바구니에 넣기</a>
             </div>
           </div>
         </div>
@@ -78,6 +80,14 @@
 <script src="/js/item_detail.js"></script>
 <script th:if="${errorMessage != null and errorMessage ne ''}" th:inline="javascript">
   alert([[${errorMessage}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
+</script>
+<script>
+  function addToCart() {
+    var quantity = document.getElementById("quantity").value; // 수량 값 가져오기
+    document.getElementById("quantityInput").value = quantity; // 수량 값을 숨겨진 input에 설정
+    document.getElementById("addToCartForm").action = "/shopping/cartAdd"; // 액션 변경
+    document.getElementById("addToCartForm").submit(); // 폼 제출
+  }
 </script>
 </body>
 </html>

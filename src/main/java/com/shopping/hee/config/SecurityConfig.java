@@ -26,6 +26,10 @@ public class SecurityConfig  {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .csrf((csrf) ->
+                        csrf
+                                .disable())
+
                 .authorizeHttpRequests((authorizeRequest) ->
                         authorizeRequest
                                 .requestMatchers("/", "/home", "/member/**", "/shopping/**").permitAll()
@@ -44,7 +48,7 @@ public class SecurityConfig  {
         )
                 .logout((logoutConfig) ->
                         logoutConfig
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                                 .logoutSuccessUrl("/")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")

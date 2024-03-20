@@ -14,7 +14,7 @@
   </div>
 <div class="container">
   <form action="itemAdd" method="post" th:object="${item}" enctype="multipart/form-data">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
     <div class="form-group">
       <label for="name">상품명</label>
       <input type="text" th:field="*{name}" id="name" name="name" required />
