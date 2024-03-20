@@ -82,9 +82,14 @@ a:hover {color: #6199ff;}
 
 /* 테이블 색상 (중요하지 않음) */
 table {
-    width: 100%;
+    width: auto; /* 테이블 너비를 자동으로 조절하도록 변경 */
+    min-width: 100%; /* 최소 너비 설정 */
+    max-width: 1000px; /* 최대 너비 설정 */
     margin: 40px auto 10px;
     border-collapse: collapse;
+    overflow-x: auto; /* 가로 스크롤이 필요한 경우를 위해 가로 오버플로우 설정 */
+    box-sizing: border-box; /* 테이블 너비가 요소의 전체 너비를 초과하지 않도록 상자 크기를 조정 */
+    height: 100%;
 }
 th {
     background: #222831;
@@ -93,7 +98,12 @@ th {
 td, th {
     border: 1px solid #dbdbdb;
     padding: 5px 20px;
-    font-size:16px;
+    font-size:18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 55px;
+    text-align: center;
 }
 
 /* 체크박스의 크기 */
@@ -140,4 +150,8 @@ textarea.ask_content {
 
 .ask_title {
     height: 50px;
+}
+
+thead {
+    text-align: center;
 }

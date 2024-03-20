@@ -52,7 +52,6 @@ public class MemberService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.name()));
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.USER.name()));
-            System.out.println("여기를 지나갑니까?");
         }
 
         return User.builder()
