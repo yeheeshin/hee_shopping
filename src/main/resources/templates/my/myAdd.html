@@ -33,22 +33,27 @@
       <div class="form-group row">
           <div class="form-group col-6">
               <label for="name">우편번호</label>
-              <input type="text" required />
+              <input type="text" id="zipcode" required />
           </div>
           <div class="form-group col-6">
               <label for="name"></label>
-              <a href="#" class="findZipcode">우편번호 찾기</a>
+              <input type="button" onclick="execDaumPostcode()" class="findZipcode" value="우편번호 찾기" />
           </div>
       </div>
       <div class="form-group">
-          <label for="name">도로명 주소</label>
-          <input type="text"  required />
+          <label for="name">주소</label>
+          <input type="text" id="address" required />
       </div>
-      <div class="form-group">
-          <label for="name">상세 주소</label>
-          <input type="text" required />
+      <div class="form-group row">
+          <div class="form-group col-6">
+              <label for="name">상세 주소</label>
+              <input type="text" id="detailAddress" required />
+          </div>
+          <div class="form-group col-6">
+              <label for="name">참고 항목</label>
+              <input type="text" id="extraAddress" required />
+          </div>
       </div>
-      
       
     <div class="form-group">
       <input type="submit" value="상품 등록" />
@@ -75,6 +80,8 @@
 <!-- custom js -->
 <script src="/js/custom.js"></script>
 <script src="/js/board.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/address.js"></script>
 <script th:inline="javascript">
 
   $(document).ready(function(){
