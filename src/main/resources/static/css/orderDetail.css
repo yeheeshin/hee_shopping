@@ -31,3 +31,7 @@ input[type=number] {
 dd.myTitle {
     text-align: center;
 }
+
+.orderInfo {
+    font-size: 20px;
+}
