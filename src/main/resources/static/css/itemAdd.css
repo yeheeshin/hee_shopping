@@ -82,3 +82,14 @@ body {
     color: red;
     text-decoration: underline;
 }
+
+.findZipcode {
+    margin-top: 26px;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+}
