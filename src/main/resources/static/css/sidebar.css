@@ -155,3 +155,27 @@ textarea.ask_content {
 thead {
     text-align: center;
 }
+
+.addDelete {
+    padding: 0px 10px;
+    text-align: right;
+}
+
+.addDelete a {
+    /*color: red;*/
+    /*text-decoration: underline;*/
+    margin-top: 15px;
+    border: none;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 10px 55px;
+    background-color: #FF6666;
+    color: #ffffff;
+    border-radius: 45px;
+    transition: all 0.3s;
+    border: none;
+}
+
+.txt {
+    text-align: right;
+}
