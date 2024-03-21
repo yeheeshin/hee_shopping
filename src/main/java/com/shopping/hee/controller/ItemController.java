@@ -18,7 +18,6 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
-    private final MemberService memberService;
 
     // 팔찌
     @GetMapping("/Bitem")
@@ -94,24 +93,6 @@ public class ItemController {
         model.addAttribute("errorMessage", errorMessage);
 
         return "Item/item_detail";
-    }
-
-    @GetMapping("/o_d")
-    public String orderDetail(Model model) {
-        return "itemBuy";
-    }
-
-    @PostMapping("/buy")
-    public String itemBuy(@RequestParam("itemId") Long seq, @RequestParam("quantity") int count,Model model) {
-        List<Item> items = itemService.getOneItem(seq);
-
-        Member member = memberService.nowMember();
-
-        model.addAttribute("items", items);
-        model.addAttribute("count", count);
-        model.addAttribute("member", member);
-
-        return "itemBuy";
     }
 
 }
