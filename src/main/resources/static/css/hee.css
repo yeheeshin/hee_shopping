@@ -369,6 +369,7 @@ div {
 }
 .cart-page table.cart-table-product tr.cart-table-content {
     padding: 0 15px;
+    font-size: 17px;
 }
 .cart-page table.cart-table-product tr.cart-table-content p {
     margin: 0;

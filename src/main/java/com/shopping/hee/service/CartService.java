@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -29,6 +31,10 @@ public class CartService {
         cart.setMember(member);
 
         return cartRepository.save(cart);
+    }
+
+    public List<Cart> findCartByMember(Member member) {
+        return cartRepository.findByMember(member);
     }
 
     // 해당 사용자의 장바구니에 동일한 상품이 존재하는 지 확인
