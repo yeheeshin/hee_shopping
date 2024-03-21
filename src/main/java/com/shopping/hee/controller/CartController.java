@@ -27,7 +27,11 @@ public class CartController {
     public String cart(Model model) {
         Member member = memberService.nowMember();
         List<Cart> cartByMember = cartService.findCartByMember(member);
+
+        int totalPrice = cartService.calculateTotal(cartByMember);
+
         model.addAttribute("cartByMember", cartByMember);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "my/cart";
     }

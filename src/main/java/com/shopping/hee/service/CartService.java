@@ -18,6 +18,7 @@ public class CartService {
     private final MemberService memberService;
     private final ItemService itemService;
 
+    // 장바구니 추가
     public Cart addCart(Long itemId, int count) {
 
         Member member = memberService.nowMember();
@@ -33,8 +34,19 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    // 멤버 별 장바구니 조회
     public List<Cart> findCartByMember(Member member) {
         return cartRepository.findByMember(member);
+    }
+
+    // 총 가격 계산
+    public int calculateTotal(List<Cart> carts) {
+        int total = 0;
+        for (Cart cart : carts) {
+            total += cart.getItem().getPrice() * cart.getCount();
+        }
+
+        return total;
     }
 
     // 해당 사용자의 장바구니에 동일한 상품이 존재하는 지 확인
