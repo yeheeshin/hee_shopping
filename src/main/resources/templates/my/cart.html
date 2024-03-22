@@ -16,7 +16,7 @@
       <table class="cart-table-product">
         <thead>
         <tr class="cart-table-header">
-          <th class="cart-table-select"></th>
+          <th class="cart-table-select"><input class="check all" type="checkbox" onclick="checkAll(this)"></th>
           <th class="cart-table-img"></th>
           <th class="cart-table-desktop cart-table-product-name">상품 정보</th>
           <th class="cart-table-desktop cart-table-payment">옵션</th>
@@ -27,7 +27,7 @@
         </thead>
         <tbody th:each="cart : ${cartByMember}">
         <tr class="cart-table-content">
-          <td><input type="checkbox" name="checkbox1" value="select"></td>
+          <td><input type="checkbox" name="checkbox1" value="select" class="check"></td>
           <td class="cart-table-image-info"><img th:with="fileName=${#strings.substringAfter(cart.item.img, '_')}" th:src="@{'/images/' + ${fileName}}" alt=""></td>
           <td class="bold-text red-text cart-table-desktop"><span class="bold-text" th:text="${cart.item.name}">삼성 통돌이</span></td>
           <td class="cart-table-desktop"th:text="${cart.item.color}">라벤더 그레이</td>
@@ -57,5 +57,15 @@
 
 
 <div th:replace="fragments/footer :: footerFragment"></div>
+<script>
+  function checkAll(source) {
+    var checkboxes = document.querySelectorAll('.check');
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = source.checked;
+    });
+  }
+</script>
+
+
 </body>
 </html>
