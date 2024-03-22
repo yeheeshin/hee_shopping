@@ -599,6 +599,7 @@ div {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
 .cart-header-cta:hover {
@@ -620,6 +621,10 @@ div {
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 50px;
+    display: inline-block; /* 변경 */
+    text-decoration: none; /* 변경 */
+    text-align: center; /* 변경 */
+    line-height: 1; /* 변경 */
 }
 
 .delete-btn:hover {
