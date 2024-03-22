@@ -30,7 +30,7 @@
           <td><input type="checkbox" name="checkbox1" value="select" class="check"></td>
           <td class="cart-table-image-info"><img th:with="fileName=${#strings.substringAfter(cart.item.img, '_')}" th:src="@{'/images/' + ${fileName}}" alt=""></td>
           <td class="bold-text red-text cart-table-desktop"><span class="bold-text" th:text="${cart.item.name}">삼성 통돌이</span></td>
-          <td class="cart-table-desktop"th:text="${cart.item.color}">라벤더 그레이</td>
+          <td class="cart-table-desktop"th:text="${cart.item.color.getName()}">라벤더 그레이</td>
           <td class="cart-table-desktop">
               <input type="number" id="quantity" name="quantity" min="1" th:value="${cart.count}">
           </td>
