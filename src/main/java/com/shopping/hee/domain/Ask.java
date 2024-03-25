@@ -20,7 +20,7 @@ public class Ask {
     @LastModifiedDate
     private LocalDate adate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mseq")
     private Member member;
 }

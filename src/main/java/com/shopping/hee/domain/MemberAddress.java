@@ -21,7 +21,7 @@ public class MemberAddress {
     @Embedded
     private Address address;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mseq")
     private Member member;
 }

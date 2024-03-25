@@ -10,11 +10,11 @@ public class Wish {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wseq;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mseq")
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iseq")
     private Item item;
 }

@@ -17,11 +17,11 @@ public class OrderDetail {
     private int price;
     private int count;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "oseq")
     private Orders order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iseq")
     private Item item;
 }

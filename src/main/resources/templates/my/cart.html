@@ -10,7 +10,7 @@
 
 
 <div class="cart-page">
-  <form action="/shopping/itemsBuy" method="post">
+  <form th:action="@{/shopping/itemsBuy}" method="post">
     <div class="cart-page-container"><br>
       <!--For cart page and thank you page-->
       <div class="cart-page-table">
@@ -34,10 +34,10 @@
             <td class="cart-table-desktop"th:text="${cart.item.color.getName()}">라벤더 그레이</td>
             <td class="cart-table-desktop">
                 <input type="number" id="quantity" name="quantity" min="1" th:value="${cart.count}">
-                <input type="hidden" th:value="${cart.item.iseq}">
+                <input type="hidden" name="iseq" th:value="${cart.item.iseq}">
             </td>
           <td class="cart-table-desktop" th:text="${#numbers.formatInteger(cart.item.price, 0, 'COMMA') + ' 원'}">602,000 원</td>
-            <td class="cart-delete"><a href="#" class="delete-btn">삭제</a></td>
+            <td class="cart-delete"><a href="/cartDelete" class="delete-btn">삭제</a></td>
           </tr>
           </tbody>
         </table>
@@ -50,16 +50,16 @@
           </div>
         </div>
         <div class="cart-header-footer">
-          <button type="submit" class="cart-header-cta red-bg" target="_blank">구매하기</button>
+          <a type="submit" class="cart-header-cta red-bg" id="buyBtn" target="_blank">구매하기</a>
+          <button type="button" onclick="test()">test</button>
         </div><br>
       </div>
     </div>
   </form>
 </div>
 
-
-
 <div th:replace="fragments/footer :: footerFragment"></div>
+<script src="/js/cartBuy.js"></script>
 <script>
   function checkAll(source) {
     var checkboxes = document.querySelectorAll('.check');

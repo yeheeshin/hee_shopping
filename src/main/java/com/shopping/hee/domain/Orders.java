@@ -29,7 +29,7 @@ public class Orders {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mseq")
     private Member member;
 }

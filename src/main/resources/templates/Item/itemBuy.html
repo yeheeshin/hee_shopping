@@ -18,7 +18,7 @@
 </div>
 
 <!-- 주문상품 정보 시작 -->
-<div class="container max-w-screen-lg mx-auto" th:each="item : ${items}">
+<div class="container max-w-screen-lg mx-auto">
     <div class="relative overflow-visible orderInfo">
         <h2 class="mt-10 border-b-2 border-black text-xl">주문상품 정보</h2>
         <div class="box-border">
@@ -30,17 +30,17 @@
                     <dt class="pb-4 table-cell text-center">수량</dt>
                     <dt class="pb-4 table-cell text-center">주문 금액</dt>
                 </dl>
-                <dl class="table-row overflow-visible">
+                <dl class="table-row overflow-visible" th:each="item : ${orderItemsForms}">
                     <dd class="table-cell p-3 border-t border-b myTitle">
-                        <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" class="product_img" />
+                        <img th:with="fileName=${#strings.substringAfter(item.item.img, '_')}" th:src="@{'/images/' + ${fileName}}" class="product_img" />
                     </dd>
                     <dd class="table-cell p-3 align-middle border-t border-b myTitle">
-                        <span class="block" th:text="${item.name}"></span>
+                        <span class="block" th:text="${item.item.name}"></span>
                     </dd>
                     <dd class="table-cell p-3 align-middle border-t border-b myTitle">
-                        <input type="number" th:value="${count}">개
+                        <input type="number" th:value="${item.count}">개
                     </dd>
-                    <dd th:text="${#numbers.formatInteger(item.price, 0, 'COMMA') + ' 원'}" class="table-cell p-3 align-middle border-t border-b myTitle">원</dd>
+                    <dd th:text="${#numbers.formatInteger(item.item.price, 0, 'COMMA') + ' 원'}" class="table-cell p-3 align-middle border-t border-b myTitle">원</dd>
                 </dl>
             </div>
 
@@ -100,7 +100,7 @@
                     <label for="basic" class="inline-block mr-4">기본 배송지</label>
                     <input type="radio" id="new" name="address" >
                     <label for="new" class="inline-block">새로운 배송지</label>
-                    <a href="#" class="px-3 inline-block border border-black address">나의 배송 주소록</a>
+                    <a href="/itemAddress" class="px-3 inline-block border border-black address">나의 배송 주소록</a>
                 </dd>
             </dl>
             <dl class="table-row">
@@ -161,7 +161,7 @@
     <!--최종 결제 끝-->
 
     <div class="my-20 box-border text-center">
-        <a href="#" class="cursor-pointer bg-black text-white px-10 py-3 text-xl box-border">주문하기</a>
+        <a href="buy" class="cursor-pointer bg-black text-white px-10 py-3 text-xl box-border">주문하기</a>
     </div>
 
 </div>

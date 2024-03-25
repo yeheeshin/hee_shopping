@@ -22,7 +22,7 @@
     <div class="heading-section">
     </div>
     <div th:each="item : ${items}">
-      <form method="post" th:action="@{/shopping/buy(itemId=${item.iseq})}">
+      <form method="post" th:action="@{/shopping/itemsBuy}">
 <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
         <div class="row">
           <div class="col-md-6">
@@ -52,13 +52,13 @@
                 </div>
               </div>
               <div class="product-count">
-                <input type="hidden" th:value="${item.iseq}">
+                <input type="hidden" name="iseq" th:value="${item.iseq}">
                 <div class="product-option">Quantity</div>
                 <div class="display-flex">
                   <div class="qtyminus">-</div>
                   <input type="text" name="quantity" value="1" class="qty">
                   <div class="qtyplus">+</div>
-                </div>
+                </div>즈
               </div>
               <button type="submit" class="round-black-btn">구매하기</button>
               <a th:href="@{/shopping/cartAdd(itemId=${item.iseq}, quantity=1)}" class="round-black-btn">장바구니에 넣기</a>
