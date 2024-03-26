@@ -15,7 +15,7 @@ $(document).ready(function(){
 
         // AJAX 요청을 보냄
         $.ajax({
-            url: "/shopping/itemsBuy",
+            url: "/shopping/itemsBuy1",
             type: "POST",
             processData: false,
             contentType: false,
@@ -23,7 +23,7 @@ $(document).ready(function(){
             success: function(response) {
                 // 성공적으로 요청이 완료된 경우 실행할 코드
                 alert("AJAX 요청을 보냈습니다.");
-                window.location.href = "/shopping/itemsBuy";
+                window.location.href = "/shopping/itemsBuy2";
             },
             error: function(xhr, status, error) {
                 alert("AJAX 요청 오류: " + error);

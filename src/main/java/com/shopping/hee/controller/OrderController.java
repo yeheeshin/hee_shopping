@@ -1,10 +1,12 @@
 package com.shopping.hee.controller;
 
+import com.shopping.hee.domain.Form.OrderForm;
 import com.shopping.hee.domain.Form.OrderItemsForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.service.ItemService;
 import com.shopping.hee.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,36 +74,33 @@ public class OrderController {
 //    }
 
     //
-    @PostMapping("/itemsBuy")
-    public String itemsBuy(@RequestParam("iseq") List<Long> iseqList, @RequestParam("quantity") List<Integer> quantityList, RedirectAttributes redirectAttributes) {
+    @PostMapping("/itemsBuy1")
+    @ResponseBody
+    public void itemsBuy(@RequestParam("iseq") List<Long> iseqList, @RequestParam("quantity") List<Integer> quantityList, HttpSession session) {
         System.out.println("지났다");
+
+        session.setAttribute("iseqList", iseqList);
+        session.setAttribute("quantityList", quantityList);
+    }
+
+    @GetMapping("/itemsBuy2")
+    public String buyPage(Model model, HttpSession session) {
         List<OrderItemsForm> orderItemsForms = new ArrayList<>();
+
+        List<Long> iseqList = (List<Long>) session.getAttribute("iseqList");
+        List<Integer> quantityList = (List<Integer>) session.getAttribute("quantityList");
 
         for (int i = 0; i < iseqList.size(); i++) {
             Long iseq = iseqList.get(i);
             int count = quantityList.get(i);
 
             Item item = itemService.findById(iseq);
-            System.out.println("사이즈는 ? " + iseqList.size());
 
             orderItemsForms.add(new OrderItemsForm(item, count));
         }
 
         Member member = memberService.nowMember();
 
-        for (OrderItemsForm orderItemForm : orderItemsForms) {
-            System.out.println("Item: " + orderItemForm.getItem().getName());
-            System.out.println("Quantity: " + orderItemForm.getCount());
-        }
-
-        redirectAttributes.addFlashAttribute("member", member);
-        redirectAttributes.addFlashAttribute("orderItemsForms", orderItemsForms);
-
-        return "Item/itemBuy";
-    }
-
-    @GetMapping("/itemsBuy")
-    public String buyPage(@ModelAttribute("member") Member member, @ModelAttribute("orderItemsForms") List<OrderItemsForm> orderItemsForms, Model model) {
         model.addAttribute("member", member);
         model.addAttribute("orderItemsForms", orderItemsForms);
 
