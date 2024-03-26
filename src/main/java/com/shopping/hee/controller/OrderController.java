@@ -24,56 +24,22 @@ public class OrderController {
     private final ItemService itemService;
     private final MemberService memberService;
 
-//    // 상품 페이지에서 구매하기 버튼을 눌렀을 때(아이템 1개)
-//    @PostMapping("/buy")
-//    public String itemBuy(@RequestParam("itemId") Long seq, @RequestParam("quantity") int count, Model model) {
-//        List<Item> items = itemService.getOneItem(seq);
-//
-//        Member member = memberService.nowMember();
-//
-//        model.addAttribute("items", items);
-//        model.addAttribute("count", count);
-//        model.addAttribute("member", member);
-//
-//        return "itemBuy";
-//    }
+    // 상품 페이지에서 구매하기 버튼을 눌렀을 때(아이템 1개)
+    @PostMapping("/buy")
+    public String itemBuy(@RequestParam("iseq") Long seq, @RequestParam("quantity") int count, Model model) {
+        Item item = itemService.findById(seq);
+        List<OrderItemsForm> orderItemsForms = new ArrayList<>();
+        orderItemsForms.add(new OrderItemsForm(item, count));
 
-//    // 장바구니에서 선택된 아이템 정보들 --> 주문하기 페이지로 이동
-//    @PostMapping("/itemsBuy")
-//    public String itemsBuy(@RequestParam(value = "iseq", required = false) List<String> iseqList,
-//                                  @RequestParam(value = "quantity", required = false) List<String> quantityList, Model model) {
-//        List<OrderForm> orderItems = new ArrayList<>();
-//        int iseqSize = iseqList.size();
-//        System.out.println("iseqSize = " + iseqSize);
-//
-//
-//        List<Long> iseqLongs = iseqList.stream()
-//                .map(Long::parseLong)
-//                .collect(Collectors.toList());
-//
-//        List<Integer> quantities = quantityList.stream()
-//                .map(Integer::parseInt)
-//                .collect(Collectors.toList());
-//
-//        for (int i = 0; i < iseqSize; i++) {
-//            Long seq = iseqLongs.get(i);
-//            Item items = itemService.findById(seq);
-//            int count = quantities.get(i);
-//
-//            if (items != null) {
-//                orderItems.add(new OrderForm(items, count));
-//            }
-//        }
-//
-//        Member member = memberService.nowMember();
-//
-//        model.addAttribute("orderItems", orderItems);
-//        model.addAttribute("member", member);
-//
-//        return "itemBuy";
-//    }
+        Member member = memberService.nowMember();
 
-    //
+        model.addAttribute("member", member);
+        model.addAttribute("orderItemsForms", orderItemsForms);
+
+        return "Item/itemBuy";
+    }
+
+    // 장바구니에서 선택한 아이템 정보
     @PostMapping("/itemsBuy1")
     @ResponseBody
     public void itemsBuy(@RequestParam("iseq") List<Long> iseqList, @RequestParam("quantity") List<Integer> quantityList, HttpSession session) {
