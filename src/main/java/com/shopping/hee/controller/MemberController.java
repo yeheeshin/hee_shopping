@@ -1,7 +1,5 @@
 package com.shopping.hee.controller;
 
-import com.shopping.hee.domain.Form.ItemForm;
-import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.Form.MemberForm;
 import com.shopping.hee.domain.MemberAddress;
@@ -70,10 +68,10 @@ public class MemberController {
     // 배송지 관리 페이지 이동
     @GetMapping("/myadd")
     public String myAdd(Model model) {
-        return "my/myAddress";
+        return "my/myAddressList";
     }
 
-    // 배송지 관리 페이지 이동
+    // 주문 목록 페이지 이동
     @GetMapping("/o_l")
     public String orderList(Model model) {
         return "my/orderList";
@@ -90,7 +88,7 @@ public class MemberController {
     public String myAddress(MemberAddress memberAddress, Model model) {
         model.addAttribute("memberAddress", memberAddress);
 
-        return "my/myAdd";
+        return "my/addressAdd";
     }
 
     // 배송지 추가
@@ -103,9 +101,9 @@ public class MemberController {
             memberAddressService.save(memberAddress);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "my/myAdd";
+            return "my/addressAdd";
         }
 
-        return "my/myAddress";
+        return "my/myAddressList";
     }
 }

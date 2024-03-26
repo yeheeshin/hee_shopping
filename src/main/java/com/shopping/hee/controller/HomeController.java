@@ -22,9 +22,4 @@ public class HomeController {
         return "X/about";
     }
 
-    @GetMapping("shopping/myadad")
-    public String myadd(Model model) {
-        return "my/myAdd";
-    }
-
 }
