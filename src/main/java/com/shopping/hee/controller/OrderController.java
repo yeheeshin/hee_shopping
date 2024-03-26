@@ -49,6 +49,7 @@ public class OrderController {
         session.setAttribute("quantityList", quantityList);
     }
 
+    // 선택한 아이템들 정보 받아서 뷰에 뿌리기
     @GetMapping("/itemsBuy2")
     public String buyPage(Model model, HttpSession session) {
         List<OrderItemsForm> orderItemsForms = new ArrayList<>();
