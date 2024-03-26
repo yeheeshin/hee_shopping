@@ -34,12 +34,9 @@
                     <dd class="table-cell p-3 border-t border-b myTitle">
                         <img th:with="fileName=${#strings.substringAfter(item.item.img, '_')}" th:src="@{'/images/' + ${fileName}}" class="product_img" />
                     </dd>
-                    <dd class="table-cell p-3 align-middle border-t border-b myTitle">
-                        <span class="block" th:text="${item.item.name}"></span>
+                    <dd class="table-cell p-3 align-middle border-t border-b myTitle" th:text="${item.item.name}">
                     </dd>
-                    <dd class="table-cell p-3 align-middle border-t border-b myTitle">
-                        <input type="number" th:value="${item.count}">개
-                    </dd>
+                    <dd class="table-cell p-3 align-middle border-t border-b myTitle" th:text="${item.count + ' 개'}"></dd>
                     <dd th:text="${#numbers.formatInteger(item.item.price, 0, 'COMMA') + ' 원'}" class="table-cell p-3 align-middle border-t border-b myTitle">원</dd>
                 </dl>
             </div>
