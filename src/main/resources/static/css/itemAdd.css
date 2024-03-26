@@ -93,3 +93,25 @@ body {
     border-radius: 4px;
     color: #333;
 }
+
+.radio-inline {
+    display: inline-block;
+}
+
+.radio-label {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.toggle_check {
+    transform: scale(1.5); /* 크기 조정 */
+}
+
+label.custom_lbl {
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.basic_yesno {
+    margin-left: 20px;
+}

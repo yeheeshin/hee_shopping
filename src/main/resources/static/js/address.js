@@ -45,3 +45,14 @@ function execDaumPostcode() {
         }
     }).open();
 }
+
+function toggleBasic() {
+    var checkbox = document.getElementById("flexSwitchCheckDefault");
+    var basicInput = document.getElementsByName("yesno")[0];
+
+    if (checkbox.checked) {
+        basicInput.value = "1";
+    } else {
+        basicInput.value = "0";
+    }
+}

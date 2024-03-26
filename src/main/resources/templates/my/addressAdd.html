@@ -15,42 +15,51 @@
 <div class="container">
   <form action="/member/myAddress" method="post" th:object="${memberAddress}" enctype="multipart/form-data">
 <!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
-    <div class="form-group">
-      <label for="name">주소지명</label>
-      <input type="text" th:field="*{title}" id="name" name="name" required />
-    </div>
+      <div class="form-group row">
+          <div class="form-group col-6">
+              <label for="title">주소지명</label>
+              <input type="text" id="title" th:field="*{title}" required />
+          </div>
+          <div class="form-group col-6">
+              <label class="custom_lbl">기본 배송지 여부</label>
+              <div class="form-check form-switch basic_yesno">
+                  <input class="form-check-input toggle_check" type="checkbox" onchange="toggleBasic()" id="flexSwitchCheckDefault" th:checked="${yesno == '1'}">
+              </div>
+              <input type="hidden" name="yesno" th:value="${yesno}">
+          </div>
+      </div>
       
     <div class="form-group row">
         <div class="form-group col-6">
-            <label for="name">받는 사람</label>
+            <label>받는 사람</label>
             <input type="text" th:field="*{address.name}" required />
         </div>
         <div class="form-group col-6">
-            <label for="name">전화번호</label>
+            <label>전화번호</label>
             <input type="text" th:field="*{address.phone}" required />
         </div>
     </div>
       <div class="form-group row">
           <div class="form-group col-6">
-              <label for="name">우편번호</label>
-              <input type="text" th:field="*{address.zipCode}" id="zipcode" required />
+              <label>우편번호</label>
+              <input type="text"  th:field="*{address.zipCode}" id="zipcode" required />
           </div>
           <div class="form-group col-6">
-              <label for="name"></label>
+              <label></label>
               <input type="button" onclick="execDaumPostcode()" class="findZipcode" value="우편번호 찾기" />
           </div>
       </div>
       <div class="form-group">
-          <label for="name">주소</label>
+          <label>주소</label>
           <input type="text" th:field="*{address.city}" id="address" required />
       </div>
       <div class="form-group row">
           <div class="form-group col-6">
-              <label for="name">상세 주소</label>
+              <label>상세 주소</label>
               <input type="text" id="detailAddress" th:field="*{address.street}" required />
           </div>
           <div class="form-group col-6">
-              <label for="name">(참고)</label>
+              <label>(참고)</label>
               <input type="text" id="extraAddress" required />
           </div>
       </div>

@@ -1,5 +1,6 @@
 package com.shopping.hee.controller;
 
+import com.shopping.hee.domain.Enum.YesNo;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.Form.MemberForm;
 import com.shopping.hee.domain.MemberAddress;
@@ -68,6 +69,8 @@ public class MemberController {
     // 배송지 관리 페이지 이동
     @GetMapping("/myadd")
     public String myAdd(Model model) {
+
+
         return "my/myAddressList";
     }
 
@@ -93,10 +96,16 @@ public class MemberController {
 
     // 배송지 추가
     @PostMapping("/myAddress")
-    public String addAddress(@ModelAttribute("memberAddress") MemberAddress memberAddress, Model model) {
+    public String addAddress(@ModelAttribute("memberAddress") MemberAddress memberAddress, @RequestParam("yesno") String yesno, Model model) {
         try {
             Member member = memberService.nowMember();
             memberAddress.setMember(member);
+
+            if ("1".equals(yesno)) {
+                memberAddress.setBasic(YesNo.YES);
+            } else {
+                memberAddress.setBasic(YesNo.NO);
+            }
 
             memberAddressService.save(memberAddress);
         } catch (IllegalStateException e) {
