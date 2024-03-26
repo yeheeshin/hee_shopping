@@ -70,6 +70,9 @@ public class OrderController {
         model.addAttribute("member", member);
         model.addAttribute("orderItemsForms", orderItemsForms);
 
+        session.removeAttribute("iseqList");
+        session.removeAttribute("quantityList");
+
         return "Item/itemBuy";
     }
 }
