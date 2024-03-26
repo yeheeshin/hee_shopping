@@ -1,11 +1,14 @@
 package com.shopping.hee.service;
 
 import com.shopping.hee.domain.Item;
+import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.MemberAddress;
 import com.shopping.hee.repository.MemberAddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -20,6 +23,10 @@ public class MemberAddressService {
         return memberAddressRepository.save(memberAddress);
     }
 
+    // 현재 로그인 한 회원의 배송지 목록
+    public List<MemberAddress> memberAddressList(Member member) {
+        return memberAddressRepository.findByMember(member);
+    }
 
     // 동일한 주소지명 오류 발생
     public void validate(String title) {

@@ -37,24 +37,15 @@
               <th>기본 배송지</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody th:each="addlist : ${list}">
             <tr>
               <td><input class="check" type="checkbox"></td>
-              <td>우리집</td>
-              <td><a href="#">서울시 광진구 천호대로 122길 17-6, 501호</a></td>
-              <td>신예희</td>
-              <td>010-2307-4754</td>
+              <td th:text="${addlist.title}">우리집</td>
+              <td th:text="${addlist.address.city}">서울시 광진구 천호대로 122길 17-6, 501호</td>
+              <td th:text="${addlist.address.name}">신예희</td>
+              <td th:text="${addlist.address.phone}">010-2307-4754</td>
               <td> <a href="#">수정</a> </td>
-              <td> <a href="#"> O </a> </td>
-            </tr>
-            <tr>
-              <td><input class="check" type="checkbox"></td>
-              <td>우리집</td>
-              <td><a href="#">서울시 광진구 천호대로 122길 17-6, 501호</a></td>
-              <td>신예희</td>
-              <td>010-2307-4754</td>
-              <td> <a href="#">수정</a> </td>
-              <td> <a href="#"> 기본 값으로 설정 </a> </td>
+              <td th:text="${addlist.basic}"> <a href="#"> O </a> </td>
             </tr>
             </tbody>
           </table>

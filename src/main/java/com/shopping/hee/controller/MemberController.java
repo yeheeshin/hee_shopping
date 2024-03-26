@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -69,8 +71,10 @@ public class MemberController {
     // 배송지 관리 페이지 이동
     @GetMapping("/myadd")
     public String myAdd(Model model) {
+        Member member = memberService.nowMember();
+        List<MemberAddress> list = memberAddressService.memberAddressList(member);
 
-
+        model.addAttribute("list", list);
         return "my/myAddressList";
     }
 
@@ -113,6 +117,6 @@ public class MemberController {
             return "my/addressAdd";
         }
 
-        return "my/myAddressList";
+        return "redirect:/member/myadd";
     }
 }
