@@ -105,13 +105,8 @@ public class MemberController {
             Member member = memberService.nowMember();
             memberAddress.setMember(member);
 
-            if ("1".equals(yesno)) {
-                memberAddress.setBasic(YesNo.YES);
-            } else {
-                memberAddress.setBasic(YesNo.NO);
-            }
-
             memberAddressService.save(memberAddress);
+            memberAddressService.firstAddress(memberAddress);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "my/addressAdd";

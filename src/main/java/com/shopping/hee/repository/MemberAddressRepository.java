@@ -16,4 +16,5 @@ public interface MemberAddressRepository extends JpaRepository<MemberAddress,Lon
 
     // 회원별 기본 배송지가 있는지 확인
     MemberAddress findByMemberAndBasic(Member member, YesNo basic);
+
 }

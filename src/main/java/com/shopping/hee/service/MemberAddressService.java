@@ -1,5 +1,6 @@
 package com.shopping.hee.service;
 
+import com.shopping.hee.domain.Enum.YesNo;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.MemberAddress;
@@ -35,6 +36,20 @@ public class MemberAddressService {
         if (findAddress != null) {
             throw new IllegalStateException("주소지명이 중복됩니다.");
         }
+    }
+
+    // 회원이 처음 배송지를 등록한 경우
+    public boolean firstAddress(MemberAddress memberAddress) {
+        List<MemberAddress> byMember = memberAddressRepository.findByMember(memberAddress.getMember());
+
+        if (byMember.isEmpty()) {
+            memberAddress.setBasic(YesNo.YES);
+            return true;
+        } else {
+            memberAddress.setBasic(YesNo.NO);
+            return false;
+        }
+
     }
 
 }
