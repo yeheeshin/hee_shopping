@@ -100,13 +100,13 @@ public class MemberController {
 
     // 배송지 추가
     @PostMapping("/myAddress")
-    public String addAddress(@ModelAttribute("memberAddress") MemberAddress memberAddress, @RequestParam("yesno") String yesno, Model model) {
+    public String addAddress(@ModelAttribute("memberAddress") MemberAddress memberAddress, Model model) {
         try {
             Member member = memberService.nowMember();
             memberAddress.setMember(member);
 
-            memberAddressService.save(memberAddress);
             memberAddressService.firstAddress(memberAddress);
+            memberAddressService.save(memberAddress);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "my/addressAdd";
