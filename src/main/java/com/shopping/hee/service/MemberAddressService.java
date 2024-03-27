@@ -1,7 +1,6 @@
 package com.shopping.hee.service;
 
 import com.shopping.hee.domain.Enum.YesNo;
-import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.MemberAddress;
 import com.shopping.hee.repository.MemberAddressRepository;
@@ -67,4 +66,8 @@ public class MemberAddressService {
         }
     }
 
+    // seq로 배송지 정보 가져오기
+    public MemberAddress getAddressBySeq(Long seq) {
+        return memberAddressRepository.findByMaseq(seq);
+    }
 }

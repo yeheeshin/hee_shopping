@@ -4,7 +4,9 @@ import com.shopping.hee.domain.Form.OrderForm;
 import com.shopping.hee.domain.Form.OrderItemsForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
+import com.shopping.hee.domain.MemberAddress;
 import com.shopping.hee.service.ItemService;
+import com.shopping.hee.service.MemberAddressService;
 import com.shopping.hee.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class OrderController {
 
     private final ItemService itemService;
     private final MemberService memberService;
+    private final MemberAddressService memberAddressService;
 
     // 상품 페이지에서 구매하기 버튼을 눌렀을 때(아이템 1개)
     @PostMapping("/buy")
@@ -33,8 +36,12 @@ public class OrderController {
 
         Member member = memberService.nowMember();
 
+        // 배송지 목록 불러오기
+        List<MemberAddress> memberAddresses = memberAddressService.memberAddressList(member);
+
         model.addAttribute("member", member);
         model.addAttribute("orderItemsForms", orderItemsForms);
+        model.addAttribute("mad", memberAddresses);
 
         return "Item/itemBuy";
     }
@@ -65,15 +72,27 @@ public class OrderController {
 
             orderItemsForms.add(new OrderItemsForm(item, count));
         }
-
         Member member = memberService.nowMember();
+
+        // 배송지 목록 불러오기
+        List<MemberAddress> memberAddresses = memberAddressService.memberAddressList(member);
 
         model.addAttribute("member", member);
         model.addAttribute("orderItemsForms", orderItemsForms);
+        model.addAttribute("mad", memberAddresses);
 
         session.removeAttribute("iseqList");
         session.removeAttribute("quantityList");
 
         return "Item/itemBuy";
+    }
+
+    // 선택한 배송지 가져오기
+    @GetMapping("/selectAddress")
+    @ResponseBody
+    public MemberAddress getAddressDetail(@RequestParam Long seq) {
+        MemberAddress addressBySeq = memberAddressService.getAddressBySeq(seq);
+
+        return addressBySeq;
     }
 }

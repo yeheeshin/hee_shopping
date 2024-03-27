@@ -30,3 +30,70 @@
     calculateTotal();
 };
 
+ // 모달 토글 버튼을 가져옴
+ var modalToggle = document.getElementById('addressModalToggle');
+
+ // 모달 요소를 가져옴
+ var modal = document.getElementById('addressModal');
+
+ // 모달을 닫는 요소를 가져옴
+ var closeBtn = document.getElementsByClassName('close')[0];
+
+ // 모달 토글 버튼 클릭 시 모달을 보이도록 설정
+ modalToggle.onclick = function() {
+     modal.style.display = 'block';
+ }
+
+ // 모달 닫기 버튼 클릭 시 모달을 숨김
+ closeBtn.onclick = function() {
+     modal.style.display = 'none';
+ }
+
+ // 모달 외부 영역 클릭 시 모달을 숨김
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = 'none';
+     }
+ }
+
+ // 배송지 목록 중 선택한 배송지 정보 가져오기
+ function getAddressDetails() {
+     var selectedSeq;
+     var radios = document.getElementsByName('selectAddress');
+
+     for (var i = 0; i < radios.length; i++) {
+         if (radios[i].checked) {
+             selectedSeq = radios[i].value; // 각 라디오 버튼에 할당된 seq 값을 가져옴
+             break;
+         }
+     }
+
+     // AJAX 요청 생성
+     $.ajax({
+         type: 'GET',
+         url: '/shopping/selectAddress',
+         data: { seq: selectedSeq }, // 선택된 seq 값을 전송
+         success: function(response) {
+             // 성공적으로 받은 데이터를 처리하여 HTML 업데이트
+             // 예: 받은 데이터를 사용하여 주소 정보를 표시
+             alert("성공~!");
+
+             $('#sample6_postcode').val(response.address.zipCode);
+             $('#sample6_address').val(response.address.city);
+             $('#sample6_detailAddress').val(response.address.street);
+             $('#addressName').val(response.address.name);
+             $('#addressPhone').val(response.address.phone);
+
+         },
+         error: function(xhr, status, error) {
+             console.error('Error:', error);
+         }
+     });
+     closeModal();
+ }
+
+ // 모달 닫기
+ function closeModal() {
+     var modal = document.getElementById('addressModal');
+     modal.style.display = "none";
+ }

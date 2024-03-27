@@ -1,5 +1,6 @@
 package com.shopping.hee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shopping.hee.domain.Enum.YesNo;
 import com.shopping.hee.domain.Form.ItemForm;
 import jakarta.persistence.*;
@@ -23,5 +24,6 @@ public class MemberAddress {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mseq")
+    @JsonIgnore
     private Member member;
 }
