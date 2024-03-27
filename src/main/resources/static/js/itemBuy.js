@@ -97,3 +97,24 @@
      var modal = document.getElementById('addressModal');
      modal.style.display = "none";
  }
+
+ // 기본 배송지 버튼을 클릭했을 때 실행되는 함수
+ function fetchBasicAddress() {
+     // AJAX 요청 생성
+     $.ajax({
+         type: 'GET',
+         url: '/shopping/getBasicAddress', // 기본 배송지 정보를 가져오는 엔드포인트 URL
+         success: function(response) {
+             // 성공적으로 받은 데이터를 처리하여 HTML 업데이트
+             // 예: 받은 데이터를 사용하여 주소 정보를 표시
+             $('#addressName').val(response.address.name);
+             $('#addressPhone').val(response.address.phone);
+             $('#sample6_postcode').val(response.address.zipCode);
+             $('#sample6_address').val(response.address.city);
+             $('#sample6_detailAddress').val(response.address.street);
+         },
+         error: function(xhr, status, error) {
+             console.error('Error:', error);
+         }
+     });
+ }

@@ -95,4 +95,13 @@ public class OrderController {
 
         return addressBySeq;
     }
+
+    // 기본 배송지 가져오기
+    @GetMapping("/getBasicAddress")
+    @ResponseBody
+    public MemberAddress getBasicAddress() {
+        MemberAddress basicAddress = memberAddressService.getBasicAddress();
+
+        return basicAddress;
+    }
 }

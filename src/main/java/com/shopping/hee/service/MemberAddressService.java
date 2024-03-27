@@ -70,4 +70,11 @@ public class MemberAddressService {
     public MemberAddress getAddressBySeq(Long seq) {
         return memberAddressRepository.findByMaseq(seq);
     }
+
+    // 기본 배송지 가져오기
+    public MemberAddress getBasicAddress() {
+        Member member = memberService.nowMember();
+
+        return memberAddressRepository.findByMemberAndBasic(member, YesNo.YES);
+    }
 }

@@ -93,9 +93,9 @@
             <dl class="table-row">
                 <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">배송지 선택</dt>
                 <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300">
-                    <input type="radio" id="basic" name="address">
+                    <input type="radio" id="basic" name="address" onclick="fetchBasicAddress()">
                     <label for="basic" class="inline-block mr-4">기본 배송지</label>
-                    <input type="radio" id="new" name="address" >
+                    <input type="radio" id="new" name="address">
                     <label for="new" class="inline-block">새로운 배송지</label>
                     <a href="#" id="addressModalToggle" class="px-3 inline-block border border-black address">나의 배송 주소록</a>
                     <!-- 모달 -->
