@@ -45,7 +45,9 @@
               <td th:text="${addlist.address.name}">신예희</td>
               <td th:text="${addlist.address.phone}">010-2307-4754</td>
               <td> <a href="#">수정</a> </td>
-              <td th:text="${addlist.basic}"> <a href="#"> O </a> </td>
+              <td>
+                <a th:text="${addlist.basic == T(com.shopping.hee.domain.Enum.YesNo).YES ? 'O' : '기본 배송지로 설정'}" th:href="@{/member/default(id=${addlist.getMaseq()})}"></a>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -92,6 +94,29 @@
     });
   }
 </script>
+<script>
+  window.onload = function() {
+    var table = document.querySelector('table');
+    var rows = table.querySelectorAll('tbody tr');
+
+    var targetRow = null;
+
+    // '기본 배송지'가 'O'인 행을 찾음
+    rows.forEach(function(row) {
+      var basicCell = row.querySelector('td:last-child');
+      var text = basicCell.textContent.trim();
+      if (text === 'O') {
+        targetRow = row;
+      }
+    });
+
+    // 찾은 행을 테이블의 첫 번째 위치로 이동
+    if (targetRow !== null) {
+      table.querySelector('tbody').insertBefore(targetRow, table.querySelector('tbody').firstChild);
+    }
+  };
+</script>
+
 
 </body>
 

@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberAddressService {
     private final MemberAddressRepository memberAddressRepository;
+    private final MemberService memberService;
 
     // 배송지 추가
     public MemberAddress save(MemberAddress memberAddress) {
@@ -31,7 +32,9 @@ public class MemberAddressService {
 
     // 동일한 주소지명 오류 발생
     public void validate(String title) {
-        MemberAddress findAddress = memberAddressRepository.findByTitle(title);
+        Member member = memberService.nowMember();
+
+        MemberAddress findAddress = memberAddressRepository.findByTitleAndMember(title, member);
 
         if (findAddress != null) {
             throw new IllegalStateException("주소지명이 중복됩니다.");
@@ -50,6 +53,18 @@ public class MemberAddressService {
             return false;
         }
 
+    }
+
+    // 기본 배송지 변경
+    public void defaultAddress(Long seq) {
+        Member member = memberService.nowMember();
+        // 기존의 기본 배송지 가져오기
+        MemberAddress ma1 = memberAddressRepository.findByMemberAndBasic(member, YesNo.YES);
+        if (ma1 != null) {
+            ma1.setBasic(YesNo.NO);
+            MemberAddress memberAddress = memberAddressRepository.findByMaseq(seq);
+            memberAddress.setBasic(YesNo.YES);
+        }
     }
 
 }
