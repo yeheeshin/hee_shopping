@@ -1,6 +1,5 @@
 package com.shopping.hee.domain;
 
-import com.shopping.hee.domain.Enum.HowPay;
 import com.shopping.hee.domain.Enum.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,9 +18,6 @@ public class Orders {
     private int total;
     private String pName;
     private String pImg;
-
-    @Enumerated(EnumType.STRING)
-    private HowPay howPay;
 
     @Embedded
     private Address address;
