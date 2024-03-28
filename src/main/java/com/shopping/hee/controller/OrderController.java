@@ -1,6 +1,5 @@
 package com.shopping.hee.controller;
 
-import com.shopping.hee.domain.Form.OrderForm;
 import com.shopping.hee.domain.Form.OrderItemsForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.domain.Member;
@@ -13,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +67,6 @@ public class OrderController {
             int count = quantityList.get(i);
 
             Item item = itemService.findById(iseq);
-
             orderItemsForms.add(new OrderItemsForm(item, count));
         }
         Member member = memberService.nowMember();
@@ -87,21 +84,4 @@ public class OrderController {
         return "Item/itemBuy";
     }
 
-    // 선택한 배송지 가져오기
-    @GetMapping("/selectAddress")
-    @ResponseBody
-    public MemberAddress getAddressDetail(@RequestParam Long seq) {
-        MemberAddress addressBySeq = memberAddressService.getAddressBySeq(seq);
-
-        return addressBySeq;
-    }
-
-    // 기본 배송지 가져오기
-    @GetMapping("/getBasicAddress")
-    @ResponseBody
-    public MemberAddress getBasicAddress() {
-        MemberAddress basicAddress = memberAddressService.getBasicAddress();
-
-        return basicAddress;
-    }
 }

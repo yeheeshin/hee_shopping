@@ -71,7 +71,7 @@
      // AJAX 요청 생성
      $.ajax({
          type: 'GET',
-         url: '/shopping/selectAddress',
+         url: '/member/selectAddress',
          data: { seq: selectedSeq }, // 선택된 seq 값을 전송
          success: function(response) {
              // 성공적으로 받은 데이터를 처리하여 HTML 업데이트
@@ -103,7 +103,7 @@
      // AJAX 요청 생성
      $.ajax({
          type: 'GET',
-         url: '/shopping/getBasicAddress', // 기본 배송지 정보를 가져오는 엔드포인트 URL
+         url: '/member/getBasicAddress', // 기본 배송지 정보를 가져오는 엔드포인트 URL
          success: function(response) {
              // 성공적으로 받은 데이터를 처리하여 HTML 업데이트
              // 예: 받은 데이터를 사용하여 주소 정보를 표시
