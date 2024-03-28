@@ -118,3 +118,13 @@
          }
      });
  }
+
+ // 새로운 배송지 클릭 시, 값 초기화
+ function clearAddress() {
+     document.getElementById('addressName').value = ''; // 수령자 입력란 초기화
+     document.getElementById('addressPhone').value = ''; // 휴대폰 입력란 초기화
+     document.getElementById('sample6_postcode').value = ''; // 우편번호 입력란 초기화
+     document.getElementById('sample6_address').value = ''; // 주소 입력란 초기화
+     document.getElementById('sample6_detailAddress').value = ''; // 상세주소 입력란 초기화
+     document.getElementById('extraAddress').value = ''; // 참고 입력란 초기화
+ }
