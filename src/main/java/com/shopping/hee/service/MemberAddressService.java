@@ -74,7 +74,12 @@ public class MemberAddressService {
     // 기본 배송지 가져오기
     public MemberAddress getBasicAddress() {
         Member member = memberService.nowMember();
+        MemberAddress byMemberAndBasic = memberAddressRepository.findByMemberAndBasic(member, YesNo.YES);
 
-        return memberAddressRepository.findByMemberAndBasic(member, YesNo.YES);
+        if (byMemberAndBasic == null) {
+            throw new RuntimeException("기본 배송지를 찾을 수 없습니다.");
+        }
+
+        return byMemberAndBasic;
     }
 }
