@@ -23,7 +23,9 @@
         totalElements.forEach(function(element) {
             element.textContent = totalPrice.toLocaleString() + '원';
         });
-}
+
+        document.getElementById('totalPrice').value = totalPrice;
+    }
 
     // 페이지 로드 시 총 결제 금액 계산 실행
     window.onload = function() {

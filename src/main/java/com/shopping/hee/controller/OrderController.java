@@ -1,18 +1,17 @@
 package com.shopping.hee.controller;
 
+import com.shopping.hee.domain.*;
+import com.shopping.hee.domain.Form.OrderForm;
 import com.shopping.hee.domain.Form.OrderItemsForm;
-import com.shopping.hee.domain.Item;
-import com.shopping.hee.domain.Member;
-import com.shopping.hee.domain.MemberAddress;
-import com.shopping.hee.service.ItemService;
-import com.shopping.hee.service.MemberAddressService;
-import com.shopping.hee.service.MemberService;
+import com.shopping.hee.domain.Form.OrderListForm;
+import com.shopping.hee.service.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +23,8 @@ public class OrderController {
     private final ItemService itemService;
     private final MemberService memberService;
     private final MemberAddressService memberAddressService;
+    private final OrderService orderService;
+    private final OrderDetailService orderDetailService;
 
     // 상품 페이지에서 구매하기 버튼을 눌렀을 때(아이템 1개)
     @PostMapping("/buy")
@@ -84,10 +85,33 @@ public class OrderController {
         return "Item/itemBuy";
     }
 
-//    // 구매하기 기능
-//    @PostMapping("/orders")
-//    public String buyItems() {
-//
-//    }
+    @PostMapping("/orders")
+    public String buyItems(@ModelAttribute OrderListForm orderListForm, @ModelAttribute("address") Address address, @RequestParam("totalPrice") int totalPrice) {
+        Member member = memberService.nowMember();
+
+        List<OrderForm> forms = orderListForm.getForms();
+
+        Long iseq = forms.get(0).getIseq();
+        Item item = itemService.findById(iseq);
+
+        try {
+            Orders orders = Orders.createOrder(address, totalPrice, item, member);
+            orderService.saveOrder(orders);
+            if (forms != null && !forms.isEmpty()) {
+                for (OrderForm form : forms) {
+                    OrderDetail od1 = OrderForm.createOrderDetail(item, form.getCount(), orders);
+                    orderDetailService.saveOrderItem(od1);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "/main";
+    }
+
+
+
+
 
 }
