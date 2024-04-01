@@ -13,4 +13,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
     // 멤버 별 장바구니 확인
     List<Cart> findByMember(Member member);
+
+    // 멤버&상품id 로 검색해서 지우기
+    void deleteByMemberAndItem(Member member, Item item);
 }

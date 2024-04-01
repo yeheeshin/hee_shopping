@@ -99,8 +99,11 @@ public class OrderController {
             orderService.saveOrder(orders);
             if (forms != null && !forms.isEmpty()) {
                 for (OrderForm form : forms) {
-                    OrderDetail od1 = OrderForm.createOrderDetail(item, form.getCount(), orders);
+                    Item detailItem = itemService.findById(form.getIseq());
+
+                    OrderDetail od1 = OrderForm.createOrderDetail(detailItem, form.getCount(), orders);
                     orderDetailService.saveOrderItem(od1);
+                    orderService.deleteCartItem(member, detailItem);
                 }
             }
         } catch (IOException e) {
