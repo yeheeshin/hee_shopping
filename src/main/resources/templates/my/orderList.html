@@ -20,20 +20,18 @@
         <tr class="cart-table-header">
           <th class="cart-table-img"></th>
           <th class="cart-table-desktop cart-table-product-name">상품 정보</th>
-          <th class="cart-table-desktop cart-table-size">수량</th>
-          <th class="cart-table-size right-text-mobile">주문 금액</th>
           <th class="cart-table-num">주문날짜</th>
+          <th class="cart-table-size right-text-mobile">총 주문 금액</th>
           <th>주문상태</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody th:each="order : ${orders}">
         <tr class="cart-table-content">
-          <td class="cart-table-image-info"><img src="http://via.placeholder.com/350x150"></td>
-          <td class="bold-text red-text cart-table-desktop"><span class="bold-text">삼성 통돌이</span></td>
-          <td class="cart-table-desktop">1</td>
-          <td class="cart-table-desktop">198,000</td>
-          <td class="cart-table-desktop">2024-03-20</td>
-          <td class="cart-delete">배송완료</td>
+          <td class="cart-table-image-info"><img th:with="fileName=${#strings.substringAfter(order.PImg, '_')}" th:src="@{'/images/' + ${fileName}}" alt=""></td>
+          <td class="bold-text red-text cart-table-desktop"><span class="bold-text" th:text="${order.PName}">삼성 통돌이</span></td>
+          <td class="cart-table-desktop" th:text="${order.odate}"></td>
+          <td class="cart-table-desktop" th:text="${#numbers.formatInteger(order.total, 0, 'COMMA') + ' 원'}"></td>
+          <td class="cart-delete" th:text="${order.status.getName()}">배송완료</td>
         </tr>
         </tbody>
       </table>

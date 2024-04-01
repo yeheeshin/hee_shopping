@@ -4,6 +4,7 @@ import com.shopping.hee.domain.Enum.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oseq;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate odate;
     private int total;
     private String pName;
