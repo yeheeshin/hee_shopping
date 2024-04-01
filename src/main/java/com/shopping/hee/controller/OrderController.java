@@ -84,4 +84,10 @@ public class OrderController {
         return "Item/itemBuy";
     }
 
+//    // 구매하기 기능
+//    @PostMapping("/orders")
+//    public String buyItems() {
+//
+//    }
+
 }

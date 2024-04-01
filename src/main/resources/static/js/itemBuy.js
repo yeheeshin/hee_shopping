@@ -75,12 +75,9 @@
          data: { seq: selectedSeq }, // 선택된 seq 값을 전송
          success: function(response) {
              // 성공적으로 받은 데이터를 처리하여 HTML 업데이트
-             // 예: 받은 데이터를 사용하여 주소 정보를 표시
-             alert("성공~!");
-
-             $('#sample6_postcode').val(response.address.zipCode);
-             $('#sample6_address').val(response.address.city);
-             $('#sample6_detailAddress').val(response.address.street);
+             $('#zipcode').val(response.address.zipCode);
+             $('#address').val(response.address.city);
+             $('#detailAddress').val(response.address.street);
              $('#addressName').val(response.address.name);
              $('#addressPhone').val(response.address.phone);
 
@@ -109,9 +106,9 @@
              // 예: 받은 데이터를 사용하여 주소 정보를 표시
              $('#addressName').val(response.address.name);
              $('#addressPhone').val(response.address.phone);
-             $('#sample6_postcode').val(response.address.zipCode);
-             $('#sample6_address').val(response.address.city);
-             $('#sample6_detailAddress').val(response.address.street);
+             $('#zipcode').val(response.address.zipCode);
+             $('#address').val(response.address.city);
+             $('#detailAddress').val(response.address.street);
          },
          error: function(xhr, status, error) {
              console.error('Error:', error);
@@ -123,8 +120,8 @@
  function clearAddress() {
      document.getElementById('addressName').value = ''; // 수령자 입력란 초기화
      document.getElementById('addressPhone').value = ''; // 휴대폰 입력란 초기화
-     document.getElementById('sample6_postcode').value = ''; // 우편번호 입력란 초기화
-     document.getElementById('sample6_address').value = ''; // 주소 입력란 초기화
-     document.getElementById('sample6_detailAddress').value = ''; // 상세주소 입력란 초기화
+     document.getElementById('zipcode').value = ''; // 우편번호 입력란 초기화
+     document.getElementById('address').value = ''; // 주소 입력란 초기화
+     document.getElementById('detailAddress').value = ''; // 상세주소 입력란 초기화
      document.getElementById('extraAddress').value = ''; // 참고 입력란 초기화
  }
