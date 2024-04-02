@@ -40,27 +40,13 @@
               <th>날짜</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody th:each="ask, status : ${asks}">
             <tr>
               <td><input class="check" type="checkbox"></td>
-              <td>1</td>
-              <td><a href="#">글의 제목 - 1</a></td>
-              <td>거북이</td>
-              <td>2019.10.14</td>
-            </tr>
-            <tr>
-              <td><input class="check" type="checkbox"></td>
-              <td>2</td>
-              <td><a href="#">글의 제목 - 2</a></td>
-              <td>거북이</td>
-              <td>2019.10.14</td>
-            </tr>
-            <tr>
-              <td><input class="check" type="checkbox"></td>
-              <td>3</td>
-              <td><a href="#">글의 제목 - 3</a></td>
-              <td>거북이</td>
-              <td>2019.10.14</td>
+              <td th:text="${status.index + 1}">1</td>
+              <td th:text="${ask.title}"><a href="#">글의 제목 - 1</a></td>
+              <td th:text="${ask.member.name}">거북이</td>
+              <td th:text="${ask.adate}">2019.10.14</td>
             </tr>
             </tbody>
           </table>
