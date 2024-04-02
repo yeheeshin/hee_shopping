@@ -30,6 +30,15 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
+    // 회원 정보 수정
+    public Member memEdit(Long id, Member member) {
+        Member byMseq = memberRepository.findByMseq(id);
+        byMseq.setName(member.getName());
+        byMseq.setPhone(member.getPhone());
+
+        return memberRepository.save(byMseq);
+    }
+
     // 이미 가입된 회원일 경우 예외처리
     private void validateDuplicateMember(Member member) {
         Member findMember = memberRepository.findByEmail(member.getEmail());

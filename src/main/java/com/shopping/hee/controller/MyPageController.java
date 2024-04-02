@@ -6,10 +6,14 @@ import com.shopping.hee.service.MemberService;
 import com.shopping.hee.service.OrderDetailService;
 import com.shopping.hee.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,7 @@ public class MyPageController {
     private final MemberService memberService;
     private final OrderService orderService;
     private final OrderDetailService orderDetailService;
+    private final PasswordEncoder passwordEncoder;
 
     // 마이페이지 이동
     @GetMapping("/my")
@@ -47,9 +52,21 @@ public class MyPageController {
         return "my/orderList";
     }
 
+    // 내 정보 수정
     @GetMapping("/memEdit")
-    public String memberEdit(Model model) {
+    public String memberEditPage(Model model) {
+        Member member = memberService.nowMember();
+        model.addAttribute("member", member);
+
         return "my/memberEdit";
+    }
+
+    // 내 정보 수정
+    @PostMapping("/memEdit")
+    public String memberEdit(Model model, @ModelAttribute Member member, RedirectAttributes redirectAttributes) {
+        memberService.memEdit(member.getMseq(),member);
+        redirectAttributes.addFlashAttribute("errorMessage", "수정이 완료되었습니다.");
+        return "redirect:/member/memEdit";
     }
 
 }
