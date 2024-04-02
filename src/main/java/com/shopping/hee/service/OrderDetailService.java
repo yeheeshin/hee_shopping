@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -23,5 +25,10 @@ public class OrderDetailService {
         int countByOrder = orderDetailRepository.countByOrder(orders);
 
         return countByOrder-1;
+    }
+
+    // 주문으로 주문디테일 리스트 찾기
+    public List<OrderDetail> findOrderDetail(Orders orders) {
+        return orderDetailRepository.findByOrder(orders);
     }
 }

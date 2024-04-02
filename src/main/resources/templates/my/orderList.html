@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/hee.css" />
-
 </head>
 <body>
 <div th:replace="fragments/header :: headerFragment"></div>
 <div th:include="fragments/nav.html"></div>
+<link rel="stylesheet" type="text/css" href="/css/hee.css" />
 
 
 <div class="cart-page">
@@ -29,7 +28,9 @@
         <tr class="cart-table-content">
           <td class="cart-table-image-info"><img th:with="fileName=${#strings.substringAfter(order.PImg, '_')}" th:src="@{'/images/' + ${fileName}}" alt=""></td>
           <td class="bold-text red-text cart-table-desktop">
-            <span class="bold-text" th:text="${order.PName}">삼성 통돌이</span><span th:if="${num.get(state.index) > 0}"> 외 <span th:text="${num.get(state.index)}"></span></span>
+            <a th:href="@{/shopping/orderDetail(id=${order.oseq})}">
+              <span class="bold-text" th:text="${order.PName}">삼성 통돌이</span><span th:if="${num.get(state.index) > 0}"> 외 <span th:text="${num.get(state.index)}"></span></span>
+            </a>
           </td>
           <td class="cart-table-desktop" th:text="${order.odate}"></td>
           <td class="cart-table-desktop" th:text="${#numbers.formatInteger(order.total, 0, 'COMMA') + ' 원'}"></td>

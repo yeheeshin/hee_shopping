@@ -85,6 +85,7 @@ public class OrderController {
         return "Item/itemBuy";
     }
 
+    // 주문하기
     @PostMapping("/orders")
     public String buyItems(@ModelAttribute OrderListForm orderListForm, @ModelAttribute("address") Address address, @RequestParam("totalPrice") int totalPrice) {
         Member member = memberService.nowMember();
@@ -113,8 +114,14 @@ public class OrderController {
         return "/main";
     }
 
+    // 주문 상세 불러오기
+    @GetMapping("/orderDetail")
+    public String orderDetail(@RequestParam("id") Long id, Model model) {
+        Orders orderDetail = orderService.findOrderDetail(id);
+        List<OrderDetail> orderItemDetail = orderDetailService.findOrderDetail(orderDetail);
 
-
-
-
+        model.addAttribute("orderDetail", orderDetail);
+        model.addAttribute("orderItemDetail", orderItemDetail);
+        return "/my/orderDetail";
+    }
 }

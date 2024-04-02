@@ -36,4 +36,9 @@ public class OrderService {
         return orderRepository.findByMember(member);
     }
 
+    // 주문 seq 로 주문 검색
+    public Orders findOrderDetail(Long seq) {
+        return orderRepository.findByOseq(seq);
+    }
+
 }

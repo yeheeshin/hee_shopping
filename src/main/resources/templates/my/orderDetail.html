@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 테일윈드 불러오기 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css">
+    <!-- 폰트어썸 불러오기 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/orderDetail.css" />
+    <style>
+        .box-border .table-cell {
+            font-size: 18px; /* 폰트 크기 조정 */
+        }
+    </style>
+</head>
+
+<body class="sub_page">
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+
+<div class="mt-5 mb-2 text-xl font-bold text-center">
+    <h1 class="text-3xl">주문 상세</h1>
+</div>
+
+<!-- 주문상품 정보 시작 -->
+<form action="/shopping/orders" method="post">
+    <div class="container max-w-screen-lg mx-auto">
+        <div class="relative overflow-visible orderInfo">
+            <h2 class="mt-10 border-b-2 border-black text-xl">주문상품 정보</h2>
+            <div class="box-border">
+                <div class="w-full table">
+                    <dl class="w-full table-row">
+
+                        <dt class="pb-4 table-cell text-center"></dt>
+                        <dt class="pb-4 table-cell text-center">상품명</dt>
+                        <dt class="pb-4 table-cell text-center">수량</dt>
+                        <dt class="pb-4 table-cell text-center">주문 금액</dt>
+                    </dl>
+                    <dl class="table-row overflow-visible" th:each="item : ${orderItemDetail}">
+                        <dd class="table-cell p-3 border-t border-b myTitle">
+                            <img th:with="fileName=${#strings.substringAfter(item.item.img, '_')}" th:src="@{'/images/' + ${fileName}}" class="product_img" />
+                        </dd>
+                        <dd class="table-cell p-3 align-middle border-t border-b myTitle" th:text="${item.item.name}">
+                        </dd>
+                        <dd class="table-cell p-3 align-middle border-t border-b myTitle" th:text="${item.count + ' 개'}"></dd>
+                        <dd th:text="${#numbers.formatInteger(item.item.price, 0, 'COMMA') + ' 원'}" class="table-cell p-3 align-middle border-t border-b myTitle">원</dd>
+                    </dl>
+                </div>
+
+                <div class="px-5 py-4 border-b-2 border-black"></div>
+
+                <div class="text-2xl text-right p-5 box-border">총 결제금액 <span class="text-yellow-400 total-price" th:text="${#numbers.formatInteger(orderDetail.total, 0, 'COMMA') + ' 원'}">39,500</span><span></span></div>
+            </div>
+        </div>
+        <!-- 주문상품 정보 끝 -->
+
+        <!-- 주문자 정보 시작 -->
+        <div class="box-border">
+            <h2 class="mt-10 box-border border-b-2 border-black text-xl">주문자 정보</h2>
+            <div class="mb-10 table w-full border-b border-black">
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">이름</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="${orderDetail.member.name}">
+                    </dd>
+                </dl>
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">휴대폰</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="${orderDetail.member.phone}">
+                    </dd>
+                </dl>
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">이메일</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="${orderDetail.member.email}">
+                </dl>
+            </div>
+        </div>
+        <!-- 주문자 정보 끝 -->
+
+        <!--배송지 정보 시작-->
+        <div class="box-border">
+            <h2 class="mt-10 box-border border-b-2 border-black text-xl">배송지 정보</h2>
+            <div class="mb-10 table w-full border-b border-black">
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">수령인</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="${orderDetail.address.name}">
+                    </dd>
+                </dl>
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">전화번호</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="${orderDetail.address.phone}">
+                    </dd>
+                </dl>
+                <dl class="table-row">
+                    <dt class="table-cell w-1/5 font-bold align-middle p-1 border-b border-gray-300">배송주소</dt>
+                    <dd class="w-4/5 table-cell p-1 align-middle border-b border-gray-300" th:text="'(' + ${orderDetail.address.zipCode} + ') ' + ${orderDetail.address.city} + ' ' + ${orderDetail.address.street} ">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <!--배송지 정보 끝-->
+
+    </div>
+</form>
+<!-- footer section -->
+<div th:replace="fragments/footer :: footerFragment"></div>
+<!-- footer section -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+
+</html>
