@@ -44,7 +44,7 @@
             <tr>
               <td><input class="check" type="checkbox"></td>
               <td th:text="${status.index + 1}">1</td>
-              <td th:text="${ask.title}"><a href="#">글의 제목 - 1</a></td>
+              <td><a th:href="@{/shopping/askDetail(id=${ask.aseq})}" th:text="${ask.title}">글의 제목 - 1</a></td>
               <td th:text="${ask.member.name}">거북이</td>
               <td th:text="${ask.adate}">2019.10.14</td>
             </tr>

@@ -7,10 +7,7 @@ import com.shopping.hee.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,5 +43,14 @@ public class AskController {
         model.addAttribute("asks", asks);
 
         return "/askCheck";
+    }
+
+    // 문의 내역 상세 페이지
+    @GetMapping("/askDetail")
+    public String askDetail(@RequestParam("id") Long id, Model model) {
+        Ask ask = askService.askDetail(id);
+        model.addAttribute("ask", ask);
+
+        return "/askDetail";
     }
 }

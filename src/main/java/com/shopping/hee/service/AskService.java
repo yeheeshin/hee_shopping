@@ -27,4 +27,9 @@ public class AskService {
     public List<Ask> askMember(Member member) {
         return askRepository.findByMember(member);
     }
+
+    // seq로 문의 상세 내역 조회
+    public Ask askDetail(Long id) {
+        return askRepository.findByAseq(id);
+    }
 }

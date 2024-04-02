@@ -9,4 +9,7 @@ import java.util.List;
 public interface AskRepository extends JpaRepository<Ask, Long> {
     // 회원 별 문의 내역 조회
     List<Ask> findByMember(Member member);
+
+    // seq로 문의 상세 정보 조회
+    Ask findByAseq(Long seq);
 }
