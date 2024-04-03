@@ -76,9 +76,9 @@ public class OrderController {
                 int count = quantityList.get(i);
 
                 Item item = itemService.findById(iseq);
-                orderItemsForms.add(new OrderItemsForm(item, count));
-
                 orderService.overItem(item, count);
+
+                orderItemsForms.add(new OrderItemsForm(item, count));
             }
             Member member = memberService.nowMember();
 
