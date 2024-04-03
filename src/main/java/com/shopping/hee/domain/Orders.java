@@ -42,7 +42,7 @@ public class Orders {
         orders.setPImg(item.getImg());
         orders.setAddress(address);
         orders.setMember(member);
-        orders.setStatus(OrderStatus.ORDER_COMPLETED);
+        orders.setStatus(OrderStatus.PAYMENT_COMPLETED);
 
         return orders;
     }
