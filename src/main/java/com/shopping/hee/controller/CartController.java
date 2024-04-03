@@ -5,6 +5,8 @@ import com.shopping.hee.domain.Member;
 import com.shopping.hee.service.CartService;
 import com.shopping.hee.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,15 +40,13 @@ public class CartController {
 
     // 장바구니 추가
     @PostMapping("/cartAdd")
-    public String cartAdd(@RequestParam("itemId") Long itemId, @RequestParam("quantity") int count, RedirectAttributes redirectAttributes) {
+    public ResponseEntity<String> cartAdd(@RequestParam("itemId") Long itemId, @RequestParam("quantity") int count, RedirectAttributes redirectAttributes) {
         try {
             cartService.addCart(itemId, count);
+            return ResponseEntity.ok("장바구니에 상품이 추가되었습니다.");
         } catch (IllegalStateException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/i_d?id=" + itemId;
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-
-        return "my/cart";
     }
 
 

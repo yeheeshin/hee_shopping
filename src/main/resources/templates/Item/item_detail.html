@@ -79,9 +79,9 @@
 
 
 <script src="/js/item_detail.js"></script>
-<script th:if="${errorMessage != null and errorMessage ne ''}" th:inline="javascript">
-  alert([[${errorMessage}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움
-</script>
+<!--<script th:if="${errorMessage != null and errorMessage ne ''}" th:inline="javascript">-->
+<!--  alert([[${errorMessage}]]);  // 에러 메시지가 존재하고 비어있지 않을 경우 경고창을 띄움-->
+<!--</script>-->
 <script>
   function addToCart() {
     var quantity = document.getElementById("quantity").value; // 수량 값 가져오기

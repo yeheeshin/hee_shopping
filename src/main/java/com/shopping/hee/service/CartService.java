@@ -25,6 +25,7 @@ public class CartService {
         Item item = itemService.findById(itemId);
 
         validateDuplicateCart(member, item);
+        overItem(item, count);
 
         Cart cart = new Cart();
         cart.setItem(item);
@@ -55,6 +56,13 @@ public class CartService {
 
         if (findCart) {
             throw new IllegalStateException("이미 동일한 상품이 장바구니에 있습니다");
+        }
+    }
+
+    // 상품의 재고보다 더 많이 장바구니에 담는가?
+    private void overItem(Item item, int count) {
+        if (item.getCount() < count) {
+            throw new IllegalStateException("재고보다 더 많은 수량을 선택하셨습니다. 남은 재고 : " + item.getCount());
         }
     }
 }

@@ -101,8 +101,8 @@ $(document).ready(function() {
                 },
                 error: function(xhr, status, error){
                     // 오류 발생 시 실행할 코드
-                    alert("이미 장바구니에 추가된 상품입니다.");
-                    console.error("장바구니에 상품을 추가하는 중 오류가 발생했습니다.");
+                   var errorMessage = xhr.responseText;
+                    alert(errorMessage);
                 }
             });
         });
