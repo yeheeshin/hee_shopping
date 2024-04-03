@@ -2,9 +2,7 @@ package com.shopping.hee.controller;
 
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
-import com.shopping.hee.domain.Member;
 import com.shopping.hee.service.ItemService;
-import com.shopping.hee.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,10 +85,9 @@ public class ItemController {
 
     // 아이템 상세 보기
     @GetMapping("/i_d")
-    public String itemDetail(@RequestParam("id") Long seq, @ModelAttribute("errorMessage") String errorMessage, Model model) {
+    public String itemDetail(@RequestParam("id") Long seq, Model model) {
         List<Item> items = itemService.getOneItem(seq);
         model.addAttribute("items", items);
-        model.addAttribute("errorMessage", errorMessage);
 
         return "Item/item_detail";
     }

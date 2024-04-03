@@ -90,5 +90,14 @@
     document.getElementById("addToCartForm").submit(); // 폼 제출
   }
 </script>
+<script th:inline="javascript">
+
+  $(document).ready(function(){
+    var errorMessage = [[${errorMessage}]];
+    if(errorMessage != null){
+      alert(errorMessage);
+    }
+  });
+</script>
 </body>
 </html>

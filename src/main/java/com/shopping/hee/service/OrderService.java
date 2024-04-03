@@ -53,6 +53,13 @@ public class OrderService {
         }
     }
 
+    // 상품의 재고보다 더 많이 구해하는가?
+    public void overItem(Item item, int count) {
+        if (item.getCount() < count) {
+            throw new IllegalStateException("재고보다 더 많은 수량을 선택하셨습니다. 남은 재고 : " + item.getCount());
+        }
+    }
+
     private void updateOrderStatus(Orders order, LocalDate currentDate) {
         LocalDate oneDayAfterOrderDate = order.getOdate().plusDays(1);
         LocalDate twoDaysAfterOrderDate = order.getOdate().plusDays(2);
