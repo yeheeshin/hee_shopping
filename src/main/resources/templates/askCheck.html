@@ -33,7 +33,6 @@
             </colgroup>
             <thead>
             <tr>
-              <th><input class="check all" type="checkbox"></th>
               <th>번호</th>
               <th>제목</th>
               <th>작성자</th>
@@ -42,7 +41,6 @@
             </thead>
             <tbody th:each="ask, status : ${asks}">
             <tr>
-              <td><input class="check" type="checkbox"></td>
               <td th:text="${status.index + 1}">1</td>
               <td><a th:href="@{/shopping/askDetail(id=${ask.aseq})}" th:text="${ask.title}">글의 제목 - 1</a></td>
               <td th:text="${ask.member.name}">거북이</td>
