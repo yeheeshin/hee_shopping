@@ -39,6 +39,7 @@ public class MyPageController {
     // 주문 목록 페이지 이동
     @GetMapping("/o_l")
     public String orderList(Model model) {
+        orderService.updateOrder();
         List<Orders> orders = orderService.orderListByMember();
         List<Integer> num = new ArrayList<>();
 
