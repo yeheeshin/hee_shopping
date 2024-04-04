@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
+  <link rel="stylesheet" type="text/css" href="/css/pageable.css" />
 </head>
 
 <body class="sub_page">
@@ -34,14 +34,15 @@
       </ul>
 
       <div class="filters-content">
+        <!-- 아이템 목록 출력 -->
         <div class="row grid">
-          <div class="col-sm-6 col-lg-4 all laptop" th:each="item : ${items}" >
+          <div class="col-sm-6 col-lg-4 all laptop" th:each="item : ${items.content}">
             <div class="box">
               <div>
                 <a th:href="@{/shopping/i_d(id=${item.getIseq()})}">
-                <div class="img-box">
-                  <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" alt="">
-                </div>
+                  <div class="img-box">
+                    <img th:with="fileName=${#strings.substringAfter(item.img, '_')}" th:src="@{'/images/' + ${fileName}}" alt="">
+                  </div>
                 </a>
                 <div class="detail-box">
                   <h5 th:text="${item.name}">
@@ -52,10 +53,30 @@
                     </h6>
                   </div>
                 </div>
-                </div>
               </div>
             </div>
+          </div>
         </div>
+
+        <!-- 페이징 링크 출력 -->
+        <div th:if="${items.totalPages > 1}">
+          <ul class="pagination">
+            <li th:class="${items.first ? 'disabled' : ''}">
+              <a th:href="@{/shopping/categoryItem(category=${category}, page=0)}">처음</a>
+            </li>
+            <!-- 페이지 번호 출력 -->
+            <th:block th:each="pageNum : ${#numbers.sequence(1, items.totalPages)}">
+              <li th:class="${pageNum == items.number + 1 ? 'active' : ''}">
+                <a th:href="@{/shopping/categoryItem(category=${category}, page=${pageNum - 1})}" th:text="${pageNum}"></a>
+              </li>
+            </th:block>
+            <li th:class="${items.last ? 'disabled' : ''}">
+              <a th:href="@{/shopping/categoryItem(category=${category}, page=${items.totalPages - 1})}">마지막</a>
+            </li>
+          </ul>
+        </div>
+
+
       </div>
     </div>
   </section>

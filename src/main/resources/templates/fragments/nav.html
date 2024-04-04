@@ -18,16 +18,16 @@
                         <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/shopping/Bitem">팔찌</a>
+                        <a class="nav-link" th:href="@{/shopping/categoryItem(category='bra')}">팔찌</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/shopping/Ritem">반지</a>
+                        <a class="nav-link" th:href="@{/shopping/categoryItem(category='ring')}">반지</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/shopping/Nitem">목걸이</a>
+                        <a class="nav-link" th:href="@{/shopping/categoryItem(category='neck')}">목걸이</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/shopping/Eitem">귀걸이</a>
+                        <a class="nav-link" th:href="@{/shopping/categoryItem(category='ear')}">귀걸이</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" sec:authorize="isAuthenticated()" href="/shopping/ask">1:1 문의</a>

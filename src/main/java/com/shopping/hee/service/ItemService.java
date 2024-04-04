@@ -4,6 +4,8 @@ import com.shopping.hee.domain.Enum.Category;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,19 +43,7 @@ public class ItemService {
     }
 
     // 카테고리 별 목록 불러오기
-    public List<Item> getBraceletItems() {
-        return itemRepository.findByCategory(Category.Bracelet);
-    }
-
-    public List<Item> getRingItems() {
-        return itemRepository.findByCategory(Category.Ring);
-    }
-
-    public List<Item> getNecklaceItems() {
-        return itemRepository.findByCategory(Category.Necklace);
-    }
-
-    public List<Item> getEarringItems() {
-        return itemRepository.findByCategory(Category.Earring);
+    public Page<Item> getItemByCategory(Category category, int page, int size) {
+        return itemRepository.findByCategory(category, PageRequest.of(page, size));
     }
 }

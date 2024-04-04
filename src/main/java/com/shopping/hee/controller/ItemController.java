@@ -1,9 +1,11 @@
 package com.shopping.hee.controller;
 
+import com.shopping.hee.domain.Enum.Category;
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,40 +19,27 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    // 팔찌
-    @GetMapping("/Bitem")
-    public String getBItems(Model model) {
-        List<Item> items = itemService.getBraceletItems();
-
+    @GetMapping("/categoryItem")
+    public String getItems(@RequestParam("category") String category, @RequestParam(defaultValue = "0") int page, Model model) {
+        Page<Item> items = null;
+        switch (category) {
+            case "ring":
+                items = itemService.getItemByCategory(Category.Ring, page, 2); // 페이지당 10개
+                break;
+            case "bra":
+                items = itemService.getItemByCategory(Category.Bracelet, page, 2); // 페이지당 10개
+                break;
+            case "neck":
+                items = itemService.getItemByCategory(Category.Necklace, page, 2); // 페이지당 10개
+                break;
+            case "ear":
+                items = itemService.getItemByCategory(Category.Earring, page, 2); // 페이지당 10개
+                break;
+        }
         model.addAttribute("items", items);
-        return "Item/item";
-    }
+        model.addAttribute("category", category);
 
-    // 반지
-    @GetMapping("/Ritem")
-    public String getRItems(Model model) {
-        List<Item> items = itemService.getRingItems();
-
-        model.addAttribute("items", items);
-        return "Item/item";
-    }
-
-    // 목걸이
-    @GetMapping("/Nitem")
-    public String getNItems(Model model) {
-        List<Item> items = itemService.getNecklaceItems();
-
-        model.addAttribute("items", items);
-        return "Item/item";
-    }
-
-    // 귀걸이
-    @GetMapping("/Eitem")
-    public String getEItems(Model model) {
-        List<Item> items = itemService.getEarringItems();
-
-        model.addAttribute("items", items);
-        return "Item/item";
+        return "Item/item"; // 타임리프 템플릿의 경로
     }
 
 
