@@ -1,19 +1,18 @@
 package com.shopping.hee.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
     @GetMapping("/")
     public String main_home(Model model) {
-        return "/main";
-    }
 
-    @GetMapping("/home")
-    public String home(Model model) {
+        model.addAttribute("fileName", "ring.jpeg");
         return "/main";
     }
 

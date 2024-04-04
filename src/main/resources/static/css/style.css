@@ -743,3 +743,9 @@ a:focus {
 .footer_section .footer-info p a {
     color: inherit;
 }
+
+.main-image {
+    background-color: black;
+    filter: blur(1px);
+    outline: none;
+}
