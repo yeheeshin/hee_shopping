@@ -46,4 +46,15 @@ public class ItemService {
     public Page<Item> getItemByCategory(Category category, int page, int size) {
         return itemRepository.findByCategory(category, PageRequest.of(page, size));
     }
+
+    // 종류 별 아이템 검색하기
+    public Page<Item> searchItems(Category category, String name, int page, int size) {
+        Page<Item> byCategoryAndName = itemRepository.findByCategoryAndNameContaining(category, name, PageRequest.of(page, size));
+
+        if (byCategoryAndName == null) {
+            throw new NullPointerException();
+        }
+
+        return byCategoryAndName;
+    }
 }

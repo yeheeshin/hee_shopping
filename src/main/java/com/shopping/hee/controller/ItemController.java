@@ -19,6 +19,7 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    // 종류별 아이템 페이지 로드
     @GetMapping("/categoryItem")
     public String getItems(@RequestParam("category") String category, @RequestParam(defaultValue = "0") int page, Model model) {
         Page<Item> items = null;
@@ -39,7 +40,7 @@ public class ItemController {
         model.addAttribute("items", items);
         model.addAttribute("category", category);
 
-        return "Item/item"; // 타임리프 템플릿의 경로
+        return "Item/item";
     }
 
 
@@ -81,4 +82,33 @@ public class ItemController {
         return "Item/item_detail";
     }
 
+    // 아이템 검색 하기
+    @GetMapping("/search")
+    public String searchItem(@RequestParam("category") String category, @RequestParam("keyword") String keyword, @RequestParam(defaultValue = "0") int page, Model model) {
+        int size = 2;
+        Category category1 = null;
+
+        switch (category) {
+            case "ring":
+                category1 = Category.Ring; // 페이지당 10개
+                break;
+            case "bra":
+                category1 = Category.Bracelet; // 페이지당 10개
+                break;
+            case "neck":
+                category1 = Category.Necklace; // 페이지당 10개
+                break;
+            case "ear":
+                category1 = Category.Earring; // 페이지당 10개
+                break;
+        }
+
+        Page<Item> items = itemService.searchItems(category1, keyword, page, size);
+
+        model.addAttribute("items", items);
+        model.addAttribute("category", category);
+        model.addAttribute("keyword", keyword);
+
+        return "Item/itemSearch";
+    }
 }

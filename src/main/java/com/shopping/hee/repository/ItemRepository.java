@@ -17,4 +17,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     // 특정 아이템 가져오기
     List<Item> findByIseq(Long seq);
+
+    // 종류별 아이템 상품 이름 검색
+    Page<Item> findByCategoryAndNameContaining(Category category, String name, Pageable pageable);
 }

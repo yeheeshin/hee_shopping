@@ -32,7 +32,7 @@
       <div class="search">
         <form th:action="@{/shopping/search}" method="get">
           <input type="hidden" name="category" th:value="${category}">
-          <input type="text" name="keyword" placeholder="검색어 입력">
+          <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
           <button type="submit">
             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
           </button>
@@ -68,16 +68,16 @@
         <div th:if="${items.totalPages > 1}">
           <ul class="pagination">
             <li th:class="${items.first ? 'disabled' : ''}">
-              <a th:href="@{/shopping/categoryItem(category=${category}, page=0)}">처음</a>
+              <a th:href="@{/shopping/search(category=${category}, keyword=${keyword}, page=0)}">처음</a>
             </li>
             <!-- 페이지 번호 출력 -->
             <th:block th:each="pageNum : ${#numbers.sequence(1, items.totalPages)}">
               <li th:class="${pageNum == items.number + 1 ? 'active' : ''}">
-                <a th:href="@{/shopping/categoryItem(category=${category}, page=${pageNum - 1})}" th:text="${pageNum}"></a>
+                <a th:href="@{/shopping/search(category=${category}, keyword=${keyword}, page=${pageNum - 1})}" th:text="${pageNum}"></a>
               </li>
             </th:block>
             <li th:class="${items.last ? 'disabled' : ''}">
-              <a th:href="@{/shopping/categoryItem(category=${category}, page=${items.totalPages - 1})}">마지막</a>
+              <a th:href="@{/shopping/search(category=${category}, keyword=${keyword}, page=${items.totalPages - 1})}">마지막</a>
             </li>
           </ul>
         </div>
