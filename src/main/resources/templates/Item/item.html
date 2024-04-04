@@ -3,6 +3,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="/css/pageable.css" />
+  <link rel="stylesheet" type="text/css" href="/css/search.css" />
 </head>
 
 <body class="sub_page">
@@ -20,18 +21,22 @@
 
   <section class="food_section layout_padding">
     <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Item
-        </h2>
-      </div>
 
-      <ul class="filters_menu">
-        <li class="active" data-filter="*">모두</li>
-        <li data-filter=".laptop">노트북</li>
-        <li data-filter=".tablet">태블릿</li>
-        <li data-filter=".phone">스마트폰</li>
-      </ul>
+<!--      <ul class="filters_menu">-->
+<!--        <li class="active" data-filter="*">모두</li>-->
+<!--        <li data-filter=".laptop">노트북</li>-->
+<!--        <li data-filter=".tablet">태블릿</li>-->
+<!--        <li data-filter=".phone">스마트폰</li>-->
+<!--      </ul>-->
+
+      <div class="search">
+        <form th:action="@{/p_search}" method="get">
+          <input type="text" name="keyword" th:value="${keyword}" placeholder="검색어 입력">
+          <button type="submit">
+            <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+          </button>
+        </form>
+      </div>
 
       <div class="filters-content">
         <!-- 아이템 목록 출력 -->
