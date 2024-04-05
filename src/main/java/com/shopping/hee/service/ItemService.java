@@ -51,10 +51,17 @@ public class ItemService {
     public Page<Item> searchItems(Category category, String name, int page, int size) {
         Page<Item> byCategoryAndName = itemRepository.findByCategoryAndNameContaining(category, name, PageRequest.of(page, size));
 
-        if (byCategoryAndName == null) {
-            throw new NullPointerException();
+        if (byCategoryAndName == null || byCategoryAndName.isEmpty()) {
+            throw new NoItemsFoundException(name + "을 포함한 상품이 없습니다.");
         }
 
         return byCategoryAndName;
+    }
+
+
+    public class NoItemsFoundException extends RuntimeException {
+        public NoItemsFoundException(String message) {
+            super(message);
+        }
     }
 }

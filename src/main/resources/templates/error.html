@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+<div th:include="fragments/nav.html"></div>
+<h1>Error</h1>
+
+
+
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+<!-- 에러 페이지의 스크립트 -->
+<script th:inline="javascript">
+  /* 에러 메시지를 표시하고 이전 페이지로 이동하는 함수 */
+  function showAlertAndRedirect(message, url) {
+    // 메시지를 포함한 alert 창을 표시
+    alert(message);
+    // 확인 버튼을 누르면 이전 페이지로 이동
+    window.location.href = url;
+  }
+
+  // showAlertAndRedirect 함수를 호출하여 alert 창을 표시하고 이전 페이지로 이동
+  showAlertAndRedirect([[${errorMessage}]], [[${prevUrl}]]);
+</script>
+
+</body>
+</html>

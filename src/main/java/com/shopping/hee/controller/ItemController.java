@@ -4,6 +4,8 @@ import com.shopping.hee.domain.Enum.Category;
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.service.ItemService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -84,7 +86,10 @@ public class ItemController {
 
     // 아이템 검색 하기
     @GetMapping("/search")
-    public String searchItem(@RequestParam("category") String category, @RequestParam("keyword") String keyword, @RequestParam(defaultValue = "0") int page, Model model) {
+    public String searchItem(
+            @RequestParam("category") String category, @RequestParam("keyword") String keyword, @RequestParam(defaultValue = "0") int page,
+            Model model, HttpServletRequest request)
+    {
         int size = 2;
         Category category1 = null;
 
@@ -102,6 +107,11 @@ public class ItemController {
                 category1 = Category.Earring; // 페이지당 10개
                 break;
         }
+
+        String prevUrl = request.getHeader("referer");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("prevUrl", prevUrl);
 
         Page<Item> items = itemService.searchItems(category1, keyword, page, size);
 
