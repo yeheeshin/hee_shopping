@@ -45,7 +45,7 @@ public class OrderController {
             model.addAttribute("orderItemsForms", orderItemsForms);
             model.addAttribute("mad", memberAddresses);
         } catch (IllegalStateException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "재고보다 더 많은 수량을 선택하셨습니다");
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/shopping/i_d?id=" + seq;
         }
 
