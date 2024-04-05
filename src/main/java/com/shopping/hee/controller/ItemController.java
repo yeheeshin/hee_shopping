@@ -1,6 +1,7 @@
 package com.shopping.hee.controller;
 
 import com.shopping.hee.domain.Enum.Category;
+import com.shopping.hee.domain.Enum.ItemColor;
 import com.shopping.hee.domain.Form.ItemForm;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.service.ItemService;
@@ -24,21 +25,25 @@ public class ItemController {
     // 종류별 아이템 페이지 로드
     @GetMapping("/categoryItem")
     public String getItems(@RequestParam("category") String category, @RequestParam(defaultValue = "0") int page, Model model) {
+        int size = 2; // 한 페이지에 보여줄 아이템 갯수
         Page<Item> items = null;
         switch (category) {
             case "ring":
-                items = itemService.getItemByCategory(Category.Ring, page, 2); // 페이지당 10개
+                items = itemService.getItemByCategory(Category.Ring, page, size);
                 break;
             case "bra":
-                items = itemService.getItemByCategory(Category.Bracelet, page, 2); // 페이지당 10개
+                items = itemService.getItemByCategory(Category.Bracelet, page, size);
                 break;
             case "neck":
-                items = itemService.getItemByCategory(Category.Necklace, page, 2); // 페이지당 10개
+                items = itemService.getItemByCategory(Category.Necklace, page, size);
                 break;
             case "ear":
-                items = itemService.getItemByCategory(Category.Earring, page, 2); // 페이지당 10개
+                items = itemService.getItemByCategory(Category.Earring, page, size);
                 break;
         }
+        ItemColor[] itemColors = ItemColor.values();
+
+        model.addAttribute("itemColors", itemColors);
         model.addAttribute("items", items);
         model.addAttribute("category", category);
 
@@ -95,16 +100,16 @@ public class ItemController {
 
         switch (category) {
             case "ring":
-                category1 = Category.Ring; // 페이지당 10개
+                category1 = Category.Ring; 
                 break;
             case "bra":
-                category1 = Category.Bracelet; // 페이지당 10개
+                category1 = Category.Bracelet; 
                 break;
             case "neck":
-                category1 = Category.Necklace; // 페이지당 10개
+                category1 = Category.Necklace; 
                 break;
             case "ear":
-                category1 = Category.Earring; // 페이지당 10개
+                category1 = Category.Earring; 
                 break;
         }
 
@@ -115,6 +120,9 @@ public class ItemController {
 
         Page<Item> items = itemService.searchItems(category1, keyword, page, size);
 
+        ItemColor[] itemColors = ItemColor.values();
+
+        model.addAttribute("itemColors", itemColors);
         model.addAttribute("items", items);
         model.addAttribute("category", category);
         model.addAttribute("keyword", keyword);

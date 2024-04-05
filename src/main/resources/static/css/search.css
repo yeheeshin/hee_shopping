@@ -5,7 +5,7 @@
     justify-content: center; /* 가로 방향 중앙 정렬 */
     align-items: center; /* 세로 방향 중앙 정렬 */
     width: fit-content; /* 검색바 너비를 내용에 맞춤 */
-    margin: 20px auto 20px;
+    margin: 0px auto 20px;
 }
 
 /* 검색 입력 필드 스타일 */
@@ -13,7 +13,7 @@
     padding: 10px 30px 10px 10px;
     border: 1px solid #ccc; /* 경계선 스타일 */
     border-radius: 8px; /* 입력 필드의 모서리를 둥글게 */
-    width: 100%; /* 입력 필드의 너비를 전체로 설정 */
+    width: 150%; /* 입력 필드의 너비를 전체로 설정 */
 }
 
 /* 돋보기 아이콘 스타일 */
@@ -22,6 +22,7 @@
     width: 17px;
     top: 13px;
     right: 12px;
+    left: 325px;
     margin: 0;
 }
 
@@ -29,3 +30,23 @@
     border: none;
     background-color: white;
 }
+
+     /* 스타일을 적용할 부분 */
+ .row {
+     margin-bottom: 20px;
+ }
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.category {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 46px;
+}
+

@@ -21,24 +21,29 @@
 
   <section class="food_section layout_padding">
     <div class="container">
-
-<!--      <ul class="filters_menu">-->
-<!--        <li class="active" data-filter="*">모두</li>-->
-<!--        <li data-filter=".laptop">노트북</li>-->
-<!--        <li data-filter=".tablet">태블릿</li>-->
-<!--        <li data-filter=".phone">스마트폰</li>-->
-<!--      </ul>-->
-
-      <div class="search">
-        <form th:action="@{/shopping/search}" method="get">
-          <input type="hidden" name="category" th:value="${category}">
-          <input type="text" name="keyword" placeholder="검색어 입력">
-          <button type="submit">
-            <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-          </button>
-        </form>
+      <!-- 카테고리, 검색 -->
+      <div class="row">
+        <div class="col-1">
+          <label for="employ">C o l o r</label>
+        </div>
+        <div class="col-4">
+          <select name="employ" id="employ" class="category">
+            <option value="">컬러 선택</option>
+            <th:block th:each="color : ${itemColors}">
+              <option th:value="${color}" th:text="${color.getName()}"></option>
+            </th:block>
+          </select>
+        </div>
+        <div class="search">
+          <form th:action="@{/shopping/search}" method="get">
+            <input type="text" name="keyword" placeholder="검색어 입력">
+            <button type="submit">
+              <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+            </button>
+            <input type="hidden" name="category" th:value="${category}">
+          </form>
+        </div>
       </div>
-
       <div class="filters-content">
         <!-- 아이템 목록 출력 -->
         <div class="row grid">
