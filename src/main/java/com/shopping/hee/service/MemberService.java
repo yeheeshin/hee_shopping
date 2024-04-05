@@ -77,6 +77,10 @@ public class MemberService implements UserDetailsService {
         // 사용자 아이디를 가져옴
         String userId = authentication.getName();
 
+        if (memberRepository.findByEmail(userId) == null) {
+            throw new IllegalStateException("로그인 후 이용해주시길 바랍니다.");
+        }
+
         return memberRepository.findByEmail(userId);
     }
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class CartController {
 
     // 장바구니 추가
     @PostMapping("/cartAdd")
-    public ResponseEntity<String> cartAdd(@RequestParam("itemId") Long itemId, @RequestParam("quantity") int count, RedirectAttributes redirectAttributes) {
+    public ResponseEntity<String> cartAdd(@RequestParam("itemId") Long itemId, @RequestParam("quantity") int count) {
         try {
             cartService.addCart(itemId, count);
             return ResponseEntity.ok("장바구니에 상품이 추가되었습니다.");
