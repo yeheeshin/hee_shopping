@@ -2,11 +2,11 @@ package com.shopping.hee.controller;
 
 import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.Orders;
+import com.shopping.hee.service.CartService;
 import com.shopping.hee.service.MemberService;
 import com.shopping.hee.service.OrderDetailService;
 import com.shopping.hee.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +25,16 @@ public class MyPageController {
     private final MemberService memberService;
     private final OrderService orderService;
     private final OrderDetailService orderDetailService;
-    private final PasswordEncoder passwordEncoder;
+    private final CartService cartService;
 
     // 마이페이지 이동
     @GetMapping("/my")
     public String my(Model model) {
         Member nowMember = memberService.nowMember();
         model.addAttribute("nowMember", nowMember);
+
+        int cartCount = cartService.countMember(nowMember);
+        model.addAttribute("cartCount", cartCount);
 
         return "my/mypage";
     }

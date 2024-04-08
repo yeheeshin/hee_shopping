@@ -50,6 +50,11 @@ public class CartService {
         return total;
     }
 
+    // 회원 별 장바구니 갯수 조회
+    public int countMember(Member member) {
+        return cartRepository.countByMember(member);
+    }
+
     // 해당 사용자의 장바구니에 동일한 상품이 존재하는 지 확인
     private void validateDuplicateCart(Member member, Item item) {
         boolean findCart = cartRepository.existsByMemberAndItem(member, item);
