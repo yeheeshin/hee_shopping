@@ -1,6 +1,7 @@
 package com.shopping.hee.repository;
 
 import com.shopping.hee.domain.Enum.Category;
+import com.shopping.hee.domain.Enum.ItemColor;
 import com.shopping.hee.domain.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     // 종류별 아이템 상품 이름 검색
     Page<Item> findByCategoryAndNameContaining(Category category, String name, Pageable pageable);
+
+    // 색상 별 아이템 가져오기
+    Page<Item> findByColorAndCategory(ItemColor itemColor, Category category, Pageable pageable);
 }

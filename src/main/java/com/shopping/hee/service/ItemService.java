@@ -1,6 +1,7 @@
 package com.shopping.hee.service;
 
 import com.shopping.hee.domain.Enum.Category;
+import com.shopping.hee.domain.Enum.ItemColor;
 import com.shopping.hee.domain.Item;
 import com.shopping.hee.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,61 @@ public class ItemService {
         }
 
         return byCategoryAndName;
+    }
+
+    // 색상 별 아이템 검색
+    public Page<Item> selectCategoryColor(ItemColor itemColor, Category category, int page, int size) {
+        Page<Item> byColorAndCategory = itemRepository.findByColorAndCategory(itemColor, category, PageRequest.of(page, size));
+
+        if (byColorAndCategory == null || byColorAndCategory.isEmpty()) {
+            throw new NoItemsFoundException(category.getName() + "에는 " + itemColor.getName() + "색상을 포함한 상품이 없습니다.");
+        }
+
+        return byColorAndCategory;
+    }
+
+    // string 값으로 카테고리 타입 지정
+    public Category saveCategory(String name) {
+        Category category1 = null;
+
+        switch (name) {
+            case "ring":
+                category1 = Category.Ring;
+                break;
+            case "bra":
+                category1 = Category.Bracelet;
+                break;
+            case "neck":
+                category1 = Category.Necklace;
+                break;
+            case "ear":
+                category1 = Category.Earring;
+                break;
+        }
+
+        return category1;
+    }
+
+    // string 값으로 color 설정
+    public ItemColor saveItemColor(String name) {
+        ItemColor itemColor = null;
+
+        switch (name) {
+            case "Silver":
+                itemColor = ItemColor.Silver;
+                break;
+            case "RoseGold":
+                itemColor = ItemColor.RoseGold;
+                break;
+            case "Gold":
+                itemColor = ItemColor.Gold;
+                break;
+            case "Mixed":
+                itemColor = ItemColor.Mixed;
+                break;
+        }
+
+        return itemColor;
     }
 
 

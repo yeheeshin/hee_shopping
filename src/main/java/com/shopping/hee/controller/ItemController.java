@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,25 +28,18 @@ public class ItemController {
     public String getItems(@RequestParam("category") String category, @RequestParam(defaultValue = "0") int page, Model model) {
         int size = 2; // 한 페이지에 보여줄 아이템 갯수
         Page<Item> items = null;
-        switch (category) {
-            case "ring":
-                items = itemService.getItemByCategory(Category.Ring, page, size);
-                break;
-            case "bra":
-                items = itemService.getItemByCategory(Category.Bracelet, page, size);
-                break;
-            case "neck":
-                items = itemService.getItemByCategory(Category.Necklace, page, size);
-                break;
-            case "ear":
-                items = itemService.getItemByCategory(Category.Earring, page, size);
-                break;
-        }
+
+        // category 받아서 카테고리 타입으로 지정해주는 메서드
+        Category category1 = itemService.saveCategory(category);
+
+        items = itemService.getItemByCategory(category1, page, size);
+
         ItemColor[] itemColors = ItemColor.values();
 
         model.addAttribute("itemColors", itemColors);
         model.addAttribute("items", items);
         model.addAttribute("category", category);
+        model.addAttribute("selectColor", "none");
 
         return "Item/item";
     }
@@ -93,25 +87,10 @@ public class ItemController {
     @GetMapping("/search")
     public String searchItem(
             @RequestParam("category") String category, @RequestParam("keyword") String keyword, @RequestParam(defaultValue = "0") int page,
-            Model model, HttpServletRequest request)
-    {
+            Model model, HttpServletRequest request) {
         int size = 2;
-        Category category1 = null;
 
-        switch (category) {
-            case "ring":
-                category1 = Category.Ring; 
-                break;
-            case "bra":
-                category1 = Category.Bracelet; 
-                break;
-            case "neck":
-                category1 = Category.Necklace; 
-                break;
-            case "ear":
-                category1 = Category.Earring; 
-                break;
-        }
+        Category category1 = itemService.saveCategory(category);
 
         String prevUrl = request.getHeader("referer");
 
@@ -129,4 +108,48 @@ public class ItemController {
 
         return "Item/itemSearch";
     }
+
+    // 색상 검색
+    @PostMapping("/selectCategory")
+    @ResponseBody
+    public void selectCategory(@RequestBody Map<String, String> requestData, @RequestParam(defaultValue = "0") int page, HttpSession session) {
+        int size = 2;
+
+        String category = requestData.get("category");
+        System.out.println("category = " + category);
+
+        String selectColor = requestData.get("selectColor");
+        System.out.println("selectColor = " + selectColor);
+
+        Category saveCategory = itemService.saveCategory(category);
+        ItemColor saveItemColor = itemService.saveItemColor(selectColor);
+
+        Page<Item> items = itemService.selectCategoryColor(saveItemColor, saveCategory, page, size);
+
+        session.setAttribute("items", items);
+        session.setAttribute("category", category);
+
+    }
+
+    // 색상 검색 후, item 페이지로 이동
+    @GetMapping("/getColor")
+    public String getColor(HttpSession session, Model model) {
+        // 세션 플래시에서 데이터 가져오기
+        Page<Item> items = (Page<Item>) session.getAttribute("items");
+        String category = (String) session.getAttribute("category");
+
+        // 가져온 데이터를 다시 모델에 추가하여 HTML에 전달
+        model.addAttribute("items", items);
+        model.addAttribute("category", category);
+
+        // 세션 지우기
+        session.removeAttribute("items");
+        session.removeAttribute("category");
+
+        ItemColor[] itemColors = ItemColor.values();
+        model.addAttribute("itemColors", itemColors);
+
+        return "/Item/item";
+    }
+
 }
