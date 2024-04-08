@@ -48,7 +48,6 @@
                 </div>
 
                 <div class="px-5 py-4 border-b-2 border-black"></div>
-
                 <div class="text-2xl text-right p-5 box-border">총 결제금액 <span class="text-yellow-400 total-price" th:text="${#numbers.formatInteger(orderDetail.total, 0, 'COMMA') + ' 원'}">39,500</span><span></span></div>
             </div>
         </div>
@@ -98,7 +97,9 @@
             </div>
         </div>
         <!--배송지 정보 끝-->
-
+        <div class="text-center">
+            <a href="#" class="orderRollback">주문 목록으로 돌아가기</a>
+        </div><br>
     </div>
 </form>
 <!-- footer section -->
