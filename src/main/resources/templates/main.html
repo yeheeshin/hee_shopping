@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head></head>
 
@@ -26,7 +26,7 @@
                       악세사리
                     </p>
                     <div class="btn-box">
-                      <a href="/member/login" class="btn1">
+                      <a href="/member/login" sec:authorize="isAnonymous()" class="btn1">
                         Login
                       </a>
                     </div>
