@@ -36,6 +36,14 @@ public class MyPageController {
         int cartCount = cartService.countMember(nowMember);
         model.addAttribute("cartCount", cartCount);
 
+        int pay = orderService.countPay();
+        int delivery = orderService.countDelivery();
+        int deliveryCompleted = orderService.countDeliveryCompleted();
+
+        model.addAttribute("pay", pay);
+        model.addAttribute("delivery", delivery);
+        model.addAttribute("deliveryCompleted", deliveryCompleted);
+
         return "my/mypage";
     }
 

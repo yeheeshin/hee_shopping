@@ -33,21 +33,21 @@
       </a>
       <a href="#" class="item">
         <div>
-          <div class="number">0</div>
+          <div class="number" th:text="${pay}">0</div>
           <div class="text">결제완료</div>
         </div>
         <div class="icon"> > </div>
       </a>
       <a href="#" class="item">
         <div>
-          <div class="green number">1</div>
+          <div class="green number" th:text="${delivery}">1</div>
           <div class="text">배송중</div>
         </div>
         <div class="icon"> > </div>
       </a>
       <a href="#" class="item">
         <div>
-          <div class="green number">3</div>
+          <div class="green number" th:text="${deliveryCompleted}">3</div>
           <div class="text">배송완료</div>
         </div>
       </a>

@@ -33,9 +33,7 @@ public class OrderService {
 
     // 회원 별 주문 리스트
     public List<Orders> orderListByMember() {
-        Member member = memberService.nowMember();
-
-        return orderRepository.findByMember(member);
+        return orderRepository.findByMember(nowMember());
     }
 
     // 주문 seq 로 주문 검색
@@ -60,6 +58,32 @@ public class OrderService {
         }
     }
 
+    /**
+     * 주문 상태에 따른 주문의 갯수
+     */
+    // 결제 완료
+    public int countPay() {
+        OrderStatus orderStatus = OrderStatus.PAYMENT_COMPLETED;
+
+        return orderRepository.countByMemberAndStatus(nowMember(), orderStatus);
+    }
+
+    // 배송중
+    public int countDelivery() {
+        OrderStatus delivery = OrderStatus.DELIVERY;
+
+        return orderRepository.countByMemberAndStatus(nowMember(), delivery);
+    }
+
+    // 배송 완료
+    public int countDeliveryCompleted() {
+        OrderStatus deliveryCompleted = OrderStatus.DELIVERY_COMPLETED;
+
+        return orderRepository.countByMemberAndStatus(nowMember(), deliveryCompleted);
+    }
+
+
+
     private void updateOrderStatus(Orders order, LocalDate currentDate) {
         LocalDate oneDayAfterOrderDate = order.getOdate().plusDays(1);
         LocalDate twoDaysAfterOrderDate = order.getOdate().plusDays(2);
@@ -78,6 +102,10 @@ public class OrderService {
         }
 
         orderRepository.save(order);
+    }
+
+    private Member nowMember() {
+        return memberService.nowMember();
     }
 
 }
