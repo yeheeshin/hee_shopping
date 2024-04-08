@@ -24,4 +24,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     // 색상 별 아이템 가져오기
     Page<Item> findByColorAndCategory(ItemColor itemColor, Category category, Pageable pageable);
+
 }

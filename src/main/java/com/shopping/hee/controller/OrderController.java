@@ -119,6 +119,11 @@ public class OrderController {
                     OrderDetail od1 = OrderForm.createOrderDetail(detailItem, form.getCount(), orders);
                     orderDetailService.saveOrderItem(od1);
                     orderService.deleteCartItem(member, detailItem);
+
+                    int count = form.getCount();
+                    Long itemid = form.getIseq();
+
+                    itemService.downCount(itemid, count);
                 }
             }
         } catch (IOException e) {

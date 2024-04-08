@@ -114,6 +114,18 @@ public class ItemService {
         return itemColor;
     }
 
+    // 주문 시, 재고 감소
+    public void downCount(Long itemid, int count) {
+        Item item = itemRepository.findById(itemid)
+                .orElseThrow(() -> new IllegalStateException("해당 아이템을 찾을 수 없습니다."));
+
+        if (item.getCount() < count) {
+            throw new IllegalStateException("재고가 부족합니다.");
+        }
+
+        item.setCount(item.getCount() - count);
+        itemRepository.save(item);
+    }
 
     public class NoItemsFoundException extends RuntimeException {
         public NoItemsFoundException(String message) {
