@@ -30,7 +30,7 @@
           <select name="itemColor" id="itemColor" class="category">
             <option value="">컬러 선택</option>
             <th:block th:each="color : ${itemColors}">
-              <option th:value="${color}" th:text="${color.getName()}"></option>
+              <option th:value="${color}" th:text="${color.getName()}" th:selected="${color == selectColor}"></option>
             </th:block>
           </select>
         </div>

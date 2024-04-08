@@ -39,7 +39,6 @@ public class ItemController {
         model.addAttribute("itemColors", itemColors);
         model.addAttribute("items", items);
         model.addAttribute("category", category);
-        model.addAttribute("selectColor", "none");
 
         return "Item/item";
     }
@@ -128,6 +127,7 @@ public class ItemController {
 
         session.setAttribute("items", items);
         session.setAttribute("category", category);
+        session.setAttribute("selectColor", selectColor);
 
     }
 
@@ -137,14 +137,19 @@ public class ItemController {
         // 세션 플래시에서 데이터 가져오기
         Page<Item> items = (Page<Item>) session.getAttribute("items");
         String category = (String) session.getAttribute("category");
+        String selColor = (String) session.getAttribute("selectColor");
+
+        ItemColor selectColor = ItemColor.valueOf(selColor);
 
         // 가져온 데이터를 다시 모델에 추가하여 HTML에 전달
         model.addAttribute("items", items);
         model.addAttribute("category", category);
+        model.addAttribute("selectColor", selectColor);
 
         // 세션 지우기
         session.removeAttribute("items");
         session.removeAttribute("category");
+        session.removeAttribute("selectColor");
 
         ItemColor[] itemColors = ItemColor.values();
         model.addAttribute("itemColors", itemColors);
