@@ -125,7 +125,7 @@ public class OrderController {
             throw new RuntimeException(e);
         }
 
-        return "/main";
+        return "redirect:/";
     }
 
     // 주문 상세 불러오기
