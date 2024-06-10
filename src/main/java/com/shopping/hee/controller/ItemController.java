@@ -26,7 +26,7 @@ public class ItemController {
     // 종류별 아이템 페이지 로드
     @GetMapping("/categoryItem")
     public String getItems(@RequestParam("category") String category, @RequestParam(defaultValue = "0") int page, Model model) {
-        int size = 2; // 한 페이지에 보여줄 아이템 갯수
+        int size = 6; // 한 페이지에 보여줄 아이템 갯수
         Page<Item> items = null;
 
         // category 받아서 카테고리 타입으로 지정해주는 메서드
@@ -87,7 +87,7 @@ public class ItemController {
     public String searchItem(
             @RequestParam("category") String category, @RequestParam("keyword") String keyword, @RequestParam(defaultValue = "0") int page,
             Model model, HttpServletRequest request) {
-        int size = 2;
+        int size = 6;
 
         Category category1 = itemService.saveCategory(category);
 
@@ -112,7 +112,7 @@ public class ItemController {
     @PostMapping("/selectCategory")
     @ResponseBody
     public void selectCategory(@RequestBody Map<String, String> requestData, @RequestParam(defaultValue = "0") int page, HttpSession session) {
-        int size = 2;
+        int size = 6;
 
         String category = requestData.get("category");
         System.out.println("category = " + category);

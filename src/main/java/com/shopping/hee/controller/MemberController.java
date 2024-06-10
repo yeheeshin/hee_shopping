@@ -1,10 +1,7 @@
 package com.shopping.hee.controller;
 
-import com.shopping.hee.domain.Enum.YesNo;
-import com.shopping.hee.domain.Member;
 import com.shopping.hee.domain.Form.MemberForm;
-import com.shopping.hee.domain.MemberAddress;
-import com.shopping.hee.service.MemberAddressService;
+import com.shopping.hee.domain.Member;
 import com.shopping.hee.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
